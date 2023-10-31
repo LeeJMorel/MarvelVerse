@@ -21,8 +21,8 @@ In addition, MarvelVerse provides an array of filters for you to narrow down and
 
 - **Vite: React-TS**: A blazingly fast and modern frontend tooling.
 - **[Marvel API](https://developer.marvel.com/)**: The source of our rich Marvel universe data.
-- **Kaggle**: Authors Shivam Maurya and Deep Contractor aggregated some of the Marvel API data into .csv files for ease of use.
-- **D3 Library**: The magic behind our interactive and dynamic visualizations.
+- **[Kaggle](https://www.kaggle.com/datasets/deepcontractor/marvel-comic-books)**: Author Deep Contractor aggregated some of the Marvel API data into .csv files for ease of use.
+- **[React SVG TimeLine](https://github.com/netzwerg/react-svg-timeline)**: The magic behind our interactive and dynamic timeline visualizations.
 - **[Material UI](https://mui.com/material-ui/)**: A robust UI framework for accessible components and a smooth user experience.
 
 ## Authors
