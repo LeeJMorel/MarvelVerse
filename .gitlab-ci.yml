@@ -3,10 +3,11 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-    - echo "Deploying..."
+    - npm ci
+    - npm run build
   artifacts:
     paths:
-      - public
+      - dist
   tags:
     - Pages
   only:
