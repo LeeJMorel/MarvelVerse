@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.scss";
-import Graph from "./Graph";
+import Timeline from "./Timeline";
 import Network from "./Network";
-import GraphFilters from "./GraphFilters";
 import NetworkFilters from "./NetworkFilters";
-import { SelectedGraphFilter, SelectedNetworkFilter } from "./types";
+import Filters from "./Filters";
+import { SelectedNetworkFilter, SelectedFilter, filterOptions } from "./types"; // Import the necessary types
 
 function App() {
   const [view, setView] = useState("Network");
@@ -42,22 +42,15 @@ function App() {
     }
   }, [menuOpen]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentGraphFilter, setCurrentGraphFilter] =
-    useState<SelectedGraphFilter>({
-      yearStart: 1990,
-      yearEnd: 2020,
-      comic: "",
-      viewBy: "character",
-      viewByValue: "",
-    });
+  const [currentFilter, setCurrentFilter] = useState<SelectedFilter>({
+    selectedGroup: filterOptions[0], // Initialize with the first option from filterOptions
+  });
 
-  const handleGraphFilterChange = (filter: SelectedGraphFilter) => {
-    setCurrentGraphFilter(filter);
+  const handleFilterChange = (filter: SelectedFilter) => {
+    setCurrentFilter(filter);
   };
 
   //This is just a placeholder
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentNetworkFilter, setCurrentNetworkFilter] =
     useState<SelectedNetworkFilter>({
       placeholder: "I'll have data soon!",
@@ -72,7 +65,7 @@ function App() {
       <header className="app-header">
         <button onClick={() => setView("Network")}>Network</button>
         <h1 className="title">MARVELverse</h1>
-        <button onClick={() => setView("Graph")}>Graph</button>
+        <button onClick={() => setView("Timeline")}>Timeline</button>
       </header>
 
       {isMobile && (
@@ -80,12 +73,12 @@ function App() {
           <div className="mobile-menu-content" ref={menuContentRef}>
             <div className="mobile-menu-content.row">
               <button onClick={() => setView("Network")}>Network</button>
-              <button onClick={() => setView("Graph")}>Graph</button>
+              <button onClick={() => setView("Timeline")}>Timeline</button>
             </div>
             {view === "Network" ? (
               <NetworkFilters onFilterChange={handleNetworkFilterChange} />
             ) : (
-              <GraphFilters onFilterChange={handleGraphFilterChange} />
+              <Filters onFilterChange={handleFilterChange} />
             )}
             <p>Data provided by Marvel. ©2023 Marvel</p>
           </div>
@@ -104,7 +97,7 @@ function App() {
             view === "Network" ? (
               <Network filter={currentNetworkFilter} />
             ) : (
-              <Graph filter={currentGraphFilter} />
+              <Timeline filter={currentFilter} />
             )
           ) : (
             <p>View only enabled in landscape mode.</p>
@@ -117,7 +110,7 @@ function App() {
           {view === "Network" ? (
             <NetworkFilters onFilterChange={handleNetworkFilterChange} />
           ) : (
-            <GraphFilters onFilterChange={handleGraphFilterChange} />
+            <Filters onFilterChange={handleFilterChange} />
           )}
         </div>
         <p>Data provided by Marvel. ©2023 Marvel</p>
