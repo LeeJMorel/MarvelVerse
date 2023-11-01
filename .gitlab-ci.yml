@@ -1,3 +1,7 @@
+stages:
+  - build
+  - pages
+
 build:
   image: node:16
   state: build
