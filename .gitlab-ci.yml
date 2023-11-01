@@ -1,23 +1,31 @@
-image: node:16
+stages:
+  - build
+  - deploy
 
-pages:
-  stage: deploy
+web:build:
+  stage: build
+  image: node:latest
   cache:
     paths:
-      - node_modules
+      - node_modules/
   script:
-    - echo "Building..."
-    - npm ci
+    - npm install
     - npm run build
-    - echo "Deploying..."
-    - rm -rf public
-    - cp dist/index.html dist/404.html
-    - mv dist public
   artifacts:
     paths:
-      - public
-  tags:
-    - Pages
+      - dist
   only:
     - main
 
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - rm -r public
+    - cp dist/index.html dist/404.html
+    - mv ./dist ./public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
