@@ -16,7 +16,7 @@ build:
 
 pages:
   image: alpine:latest
-  stage: deploy
+  stage: pages
   script:
     - echo "Deploying"...
     - mv dist public
