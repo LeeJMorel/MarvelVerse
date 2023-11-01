@@ -1,13 +1,24 @@
-image: node:16
-
-pages:
-  stage: deploy
+build:
+  image: node:16
+  state: build
   script:
     - npm ci
-    - npm run build
+    - npm build
   artifacts:
     paths:
       - dist
+  only:
+    - main
+
+pages:
+  image: alpine:latest
+  stage: deploy
+  script:
+    - echo "Deploying"...
+    - mv dist public
+  artifacts:
+    paths:
+      - public
   tags:
     - Pages
   only:
