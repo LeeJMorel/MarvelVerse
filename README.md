@@ -1,8 +1,8 @@
+![MarvelVerse Logo](/src/assets/marvelLogo.png)
+
 # MarvelVerse
 
 Welcome to MarvelVerse! Dive deep into the Marvel Universe with our visually stunning and informative data visualizations, meticulously curated and created for CSE442, a data visualization course at the University of Washington. Our final for this course was creatively built and proposed by our team to showcase the skills we learned in the course and beyond. You can learn more about this by reviewing our [PROCESS](/PROCESS.md) page detailing what went into building the MarvelVerse.
-
-![MarvelVerse Logo](/src/assets/marvelLogo.png)
 
 ## Features
 
@@ -13,7 +13,7 @@ In addition, MarvelVerse provides an array of filters for you to narrow down and
 
 ## Getting Started
 
-1. **Visit [MarvelVerse]https://cse442.pages.cs.washington.edu/23au/a3/MarvelGraph/)**: Click on the link to be directed to the main website.
+1. **Visit [MarvelVerse](https://cse442.pages.cs.washington.edu/23au/a3/MarvelGraph/)**: Click on the link to be directed to the main website.
 2. **Navigate**: Use the top navigation bar to switch between different visualizations. If you are on a mobile device this is located in the top of the left hand navigation bar.
 3. **Filter**: Use the filtering options provided to refine the data shown in the visualizations.
 
