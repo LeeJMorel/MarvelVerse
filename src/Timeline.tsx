@@ -86,13 +86,15 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
   }));
 
   // Create events for each issue title within the corresponding lane
-  const events = (marvelComicData as any[]).map((comic) => ({
-    eventId: comic.issue_title, // Use issue title as eventId
-    startTimeMillis: parseDateToMillis(comic.publish_date),
-    endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
-    laneId: comic.comic_name, // Assign the corresponding comic name as the lane
-    tooltip: comic.issue_title, // Display issue title on hover
-  }));
+  const events = (marvelComicData as any[])
+    .filter((comic) => comic.Grouping) // Filter out records with empty Grouping
+    .map((comic) => ({
+      eventId: comic.issue_title, // Use issue title as eventId
+      startTimeMillis: parseDateToMillis(comic.publish_date),
+      endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
+      laneId: comic.comic_name, // Assign the corresponding comic name as the lane
+      tooltip: comic.issue_title, // Display issue title on hover
+    }));
 
   return (
     <div className="app-body graph-container">
