@@ -10,13 +10,15 @@ interface TimelineProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const comicsEvents = (marvelComicData as any[]).map((comic) => ({
-  eventId: comic.issue_title,
-  tooltip: comic.issue_description,
-  laneId: comic.Grouping,
-  startTimeMillis: parseDateToMillis(comic.publish_date),
-  endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
-}));
+const comicsEvents = (marvelComicData as any[])
+  .filter((comic) => comic.Grouping) // Filter out records with empty Grouping
+  .map((comic) => ({
+    eventId: comic.issue_title,
+    tooltip: comic.issue_description,
+    laneId: comic.Grouping,
+    startTimeMillis: parseDateToMillis(comic.publish_date),
+    endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
+  }));
 
 const lanes = Object.entries(comicAbbreviationMap).map(([key, value]) => ({
   laneId: key.toString(),
