@@ -5,10 +5,12 @@ export interface FilterOption {
 }
 
 export const filterOptions: FilterOption[] = [
-  { label: "X-Men", color: "yellow" },
   { label: "Avengers", color: "blue" },
+  { label: "Spiderman", color: "red" },
+  { label: "X-Men", color: "yellow" },
   { label: "Fantastic Four", color: "grey" },
-  // Add more options here
+  { label: "Midnight Sons", color: "purple" },
+  { label: "Defenders", color: "green" },
 ];
 
 export type SelectedFilter = {
@@ -33,4 +35,6 @@ export interface ComicData {
   Format: string;
   Rating: string;
   Price: string;
+  Grouping?: string;
+  Event?: string;
 }

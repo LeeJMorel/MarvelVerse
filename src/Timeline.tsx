@@ -2,13 +2,13 @@ import React from "react";
 import "./App.scss";
 import { SelectedFilter } from "./types";
 import { Timeline as SVGTimeline } from "react-svg-timeline";
-import marbleData from "./data/marvel_comic_filtered.json";
+import { marvelComicData } from "./data/marvel_comic_filtered.tsx";
 
 interface TimelineProps {
   filter: SelectedFilter;
 }
 
-const comicsEvents = marbleData.map((comic) => ({
+const comicsEvents = marvelComicData.map((comic) => ({
   eventId: comic.issue_title,
   tooltip: comic.issue_description,
   laneId: comic.Grouping,
