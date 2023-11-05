@@ -22,7 +22,6 @@ const lanes = Object.entries(comicAbbreviationMap).map(([key, value]) => ({
   laneId: key.toString(),
   label: value,
 }));
-console.log(lanes);
 
 function parseDateToMillis(dateString) {
   const months = {
@@ -92,16 +91,18 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
     laneId: comic.comic_name, // Assign the corresponding comic name as the lane
     tooltip: comic.issue_title, // Display issue title on hover
   }));
+
   return (
     <div className="app-body graph-container">
       <h2>Comic series Marvel has published over time</h2>
       {filter === "Show All" ? (
         <SVGTimeline
-          width={600}
-          height={300}
+          width={1200}
+          height={600}
           events={comicsEvents}
           lanes={lanes}
           dateFormat={dateFormat}
+          enableEventClustering={true}
         />
       ) : (
         <SVGTimeline
