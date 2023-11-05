@@ -2,13 +2,14 @@ import React from "react";
 import "./App.scss";
 import { SelectedFilter } from "./types";
 import { Timeline as SVGTimeline } from "react-svg-timeline";
-import { marvelComicData } from "./data/marvel_comic_filtered.tsx";
+import marvelComicData from "./data/marvel_comic_filtered.json";
 
 interface TimelineProps {
   filter: SelectedFilter;
 }
 
-const comicsEvents = marvelComicData.map((comic) => ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const comicsEvents = (marvelComicData as any[]).map((comic) => ({
   eventId: comic.issue_title,
   tooltip: comic.issue_description,
   laneId: comic.Grouping,
