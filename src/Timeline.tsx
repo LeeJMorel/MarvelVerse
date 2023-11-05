@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import "./App.scss";
-import { SelectedFilter } from "./types";
+import { comicAbbreviationMap } from "./types";
 import { Timeline as SVGTimeline } from "react-svg-timeline";
 import marvelComicData from "./data/marvel_comic_filtered.json";
 
 interface TimelineProps {
-  filter: SelectedFilter;
+  filter: string | null;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,15 +17,6 @@ const comicsEvents = (marvelComicData as any[]).map((comic) => ({
   startTimeMillis: parseDateToMillis(comic.publish_date),
   endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
 }));
-
-const comicAbbreviationMap = {
-  AVE: "Avengers",
-  SPI: "Spiderman",
-  XM: "X-Men",
-  FF: "Fantastic Four",
-  MS: "Midnight Sons",
-  DEF: "Defenders",
-};
 
 const lanes = Object.entries(comicAbbreviationMap).map(([key, value]) => ({
   laneId: key.toString(),
@@ -64,23 +56,62 @@ function parseDateToMillis(dateString) {
 const dateFormat = (ms: number) => new Date(ms).toLocaleString();
 
 const Timeline: React.FC<TimelineProps> = ({ filter }) => {
+  function filterComicDataByGrouping(comicData, filterName) {
+    const groupingKey = Object.keys(comicAbbreviationMap).find(
+      (key) => comicAbbreviationMap[key] === filterName
+    );
+
+    if (!groupingKey) {
+      // If the filter name is not found, return an empty array or handle it as needed.
+      return [];
+    }
+
+    return comicData.filter((comic) => comic.Grouping === groupingKey);
+  }
+  const filteredAvengersComics = filterComicDataByGrouping(
+    marvelComicData,
+    filter
+  );
+
+  // Get unique comic names
+  const uniqueComicNames = Array.from(
+    new Set((filteredAvengersComics as any[]).map((comic) => comic.comic_name))
+  );
+
+  // Create lanes for each unique comic name
+  const seriesLanes = uniqueComicNames.map((comicName) => ({
+    laneId: comicName,
+    label: comicName,
+  }));
+
+  // Create events for each issue title within the corresponding lane
+  const events = (marvelComicData as any[]).map((comic) => ({
+    eventId: comic.issue_title, // Use issue title as eventId
+    startTimeMillis: parseDateToMillis(comic.publish_date),
+    endTimeMillis: parseDateToMillis(comic.publish_date) + 100000000,
+    laneId: comic.comic_name, // Assign the corresponding comic name as the lane
+    tooltip: comic.issue_title, // Display issue title on hover
+  }));
   return (
     <div className="app-body graph-container">
-      <h2>Timeline Visualization</h2>
-      <SVGTimeline
-        width={600}
-        height={300}
-        events={comicsEvents}
-        lanes={lanes}
-        dateFormat={dateFormat}
-      />
-      <p>This is a placeholder for the Timeline component.</p>
-      <div className="filter-info">
-        <h3>Current Filter:</h3>
-        <p>
-          <strong>Selected Group:</strong> {filter.selectedGroup.label}
-        </p>
-      </div>
+      <h2>Comic series Marvel has published over time</h2>
+      {filter === "Show All" ? (
+        <SVGTimeline
+          width={600}
+          height={300}
+          events={comicsEvents}
+          lanes={lanes}
+          dateFormat={dateFormat}
+        />
+      ) : (
+        <SVGTimeline
+          width={600}
+          height={300}
+          events={events}
+          lanes={seriesLanes}
+          dateFormat={dateFormat}
+        />
+      )}
     </div>
   );
 };

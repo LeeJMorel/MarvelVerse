@@ -4,7 +4,7 @@ import Timeline from "./Timeline";
 import Network from "./Network";
 import NetworkFilters from "./NetworkFilters";
 import Filters from "./Filters";
-import { SelectedNetworkFilter, SelectedFilter, filterOptions } from "./types"; // Import the necessary types
+import { SelectedNetworkFilter, filterOptions } from "./types"; // Import the necessary types
 
 function App() {
   const [view, setView] = useState("Network");
@@ -42,11 +42,9 @@ function App() {
     }
   }, [menuOpen]);
 
-  const [currentFilter, setCurrentFilter] = useState<SelectedFilter>({
-    selectedGroup: filterOptions[0], // Initialize with the first option from filterOptions
-  });
+  const [currentFilter, setCurrentFilter] = useState<string | null>(null);
 
-  const handleFilterChange = (filter: SelectedFilter) => {
+  const handleFilterChange = (filter: string | null) => {
     setCurrentFilter(filter);
   };
 
@@ -78,7 +76,10 @@ function App() {
             {view === "Network" ? (
               <NetworkFilters onFilterChange={handleNetworkFilterChange} />
             ) : (
-              <Filters onFilterChange={handleFilterChange} />
+              <Filters
+                filterOptions={filterOptions}
+                onFilterChange={handleFilterChange}
+              />
             )}
             <p>Data provided by Marvel. ©2023 Marvel</p>
           </div>
@@ -110,7 +111,10 @@ function App() {
           {view === "Network" ? (
             <NetworkFilters onFilterChange={handleNetworkFilterChange} />
           ) : (
-            <Filters onFilterChange={handleFilterChange} />
+            <Filters
+              filterOptions={filterOptions}
+              onFilterChange={handleFilterChange}
+            />
           )}
         </div>
         <p>Data provided by Marvel. ©2023 Marvel</p>

@@ -11,10 +11,16 @@ export const filterOptions: FilterOption[] = [
   { label: "Fantastic Four", color: "grey" },
   { label: "Midnight Sons", color: "purple" },
   { label: "Defenders", color: "green" },
+  { label: "Show All", color: "white" },
 ];
 
-export type SelectedFilter = {
-  selectedGroup: FilterOption;
+export const comicAbbreviationMap = {
+  AVE: "Avengers",
+  SPI: "Spiderman",
+  XM: "X-Men",
+  FF: "Fantastic Four",
+  MS: "Midnight Sons",
+  DEF: "Defenders",
 };
 
 //just a placeholder
