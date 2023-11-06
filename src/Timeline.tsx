@@ -4,6 +4,7 @@ import "./App.scss";
 import { comicAbbreviationMap } from "./types";
 import { Timeline as SVGTimeline } from "react-svg-timeline";
 import marvelComicData from "./data/marvel_comic_filtered.json";
+import AutoSizer, { Size } from "react-virtualized-auto-sizer";
 
 interface TimelineProps {
   filter: string | null;
@@ -100,22 +101,30 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
     <div className="app-body graph-container">
       <h2>Comic series Marvel has published over time</h2>
       {filter === "Show All" ? (
-        <SVGTimeline
-          width={1200}
-          height={600}
-          events={comicsEvents}
-          lanes={lanes}
-          dateFormat={dateFormat}
-          enableEventClustering={true}
-        />
+        <AutoSizer>
+          {({ width, height }: Size) => (
+            <SVGTimeline
+              width={width}
+              height={height}
+              events={comicsEvents}
+              lanes={lanes}
+              dateFormat={dateFormat}
+              enableEventClustering={true}
+            />
+          )}
+        </AutoSizer>
       ) : (
-        <SVGTimeline
-          width={600}
-          height={300}
-          events={events}
-          lanes={seriesLanes}
-          dateFormat={dateFormat}
-        />
+        <AutoSizer>
+          {({ width, height }: Size) => (
+            <SVGTimeline
+              width={width}
+              height={height}
+              events={events}
+              lanes={seriesLanes}
+              dateFormat={dateFormat}
+            />
+          )}
+        </AutoSizer>
       )}
     </div>
   );

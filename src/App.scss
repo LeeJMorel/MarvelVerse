@@ -11,6 +11,8 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
   height: 100%; // Set height of App to take up the full height of the screen
   width: 100%; // Set width of App to take up the full height of the screen
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
@@ -53,32 +55,33 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
 }
 
 .app-container {
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; // To ensure it takes up the full viewport height
+  // min-height: 100vh;
 
   .app-body {
     flex: 1;
     overflow-y: auto;
     font-family: "Oswald", sans-serif;
-
-    @media (max-width: 768px) {
-      min-height: 100vh;
-    }
+    display: flex;
+    flex-direction: column;
+    // min-height: 100vh;
 
     .network-container,
     .graph-container {
       padding: 20px;
-      border: 1px dashed gray; // just a basic border for visualization
+      border: 1px dashed gray;
       margin: 20px 0;
+      flex: 1;
     }
   }
 }
 
 .app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
   width: 100vw;
   text-align: center;
   padding: 0;
@@ -94,11 +97,6 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
 
     & > div {
       margin: 10px;
-    }
-
-    .MuiSlider-root {
-      min-width: 200px; // Ensure the slider has a minimum width to prevent it from getting too small
-      margin: 0 10px;
     }
 
     button {
