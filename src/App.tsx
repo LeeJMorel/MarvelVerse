@@ -7,7 +7,7 @@ import Filters from "./Filters";
 import { SelectedNetworkFilter, filterOptions } from "./types"; // Import the necessary types
 
 function App() {
-  const [view, setView] = useState("Network");
+  const [view, setView] = useState("Timeline");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuContentRef = useRef<HTMLDivElement | null>(null);
@@ -42,7 +42,7 @@ function App() {
     }
   }, [menuOpen]);
 
-  const [currentFilter, setCurrentFilter] = useState<string | null>(null);
+  const [currentFilter, setCurrentFilter] = useState<string | null>("Show All");
 
   const handleFilterChange = (filter: string | null) => {
     setCurrentFilter(filter);
@@ -79,6 +79,7 @@ function App() {
               <Filters
                 filterOptions={filterOptions}
                 onFilterChange={handleFilterChange}
+                isMobile={true}
               />
             )}
             <p>Data provided by Marvel. ©2023 Marvel</p>
@@ -107,6 +108,12 @@ function App() {
       </div>
 
       <footer className="app-footer">
+        {view === "Timeline" && (
+          <div className="keyboard-shortcuts">
+            Keyboard Shortcuts: Zoom In (Click), Zoom Out (Alt + Click), Zoom
+            Custom (Shift + Click + Drag), Pan (Click + Drag), Reset (Esc)
+          </div>
+        )}
         <div className="filter-container">
           {view === "Network" ? (
             <NetworkFilters onFilterChange={handleNetworkFilterChange} />
@@ -114,6 +121,7 @@ function App() {
             <Filters
               filterOptions={filterOptions}
               onFilterChange={handleFilterChange}
+              isMobile={false}
             />
           )}
         </div>

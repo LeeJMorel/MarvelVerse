@@ -2,9 +2,13 @@
 import React from "react";
 import "./App.scss";
 import { comicAbbreviationMap } from "./types";
-import { Timeline as SVGTimeline } from "react-svg-timeline";
+import {
+  Timeline as SVGTimeline,
+  deriveTimelineTheme,
+} from "react-svg-timeline";
 import marvelComicData from "./data/marvel_comic_filtered.json";
 import AutoSizer, { Size } from "react-virtualized-auto-sizer";
+import { useTheme } from "@mui/material";
 
 interface TimelineProps {
   filter: string | null;
@@ -58,6 +62,9 @@ function parseDateToMillis(dateString) {
 const dateFormat = (ms: number) => new Date(ms).toLocaleString();
 
 const Timeline: React.FC<TimelineProps> = ({ filter }) => {
+  const materialTheme = useTheme();
+  const theme = deriveTimelineTheme(materialTheme.palette.mode, materialTheme);
+
   function filterComicDataByGrouping(comicData, filterName) {
     const groupingKey = Object.keys(comicAbbreviationMap).find(
       (key) => comicAbbreviationMap[key] === filterName
@@ -110,6 +117,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
               lanes={lanes}
               dateFormat={dateFormat}
               enableEventClustering={true}
+              theme={theme}
             />
           )}
         </AutoSizer>
@@ -122,6 +130,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
               events={events}
               lanes={seriesLanes}
               dateFormat={dateFormat}
+              theme={theme}
             />
           )}
         </AutoSizer>

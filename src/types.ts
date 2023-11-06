@@ -6,12 +6,12 @@ export interface FilterOption {
 
 export const filterOptions: FilterOption[] = [
   { label: "Avengers", color: "blue" },
-  { label: "Spiderman", color: "red" },
-  { label: "X-Men", color: "yellow" },
+  { label: "Spiderman", color: "#b00e13" },
+  { label: "X-Men", color: "#ff9f00" },
   { label: "Fantastic Four", color: "grey" },
   { label: "Midnight Sons", color: "purple" },
   { label: "Defenders", color: "green" },
-  { label: "Show All", color: "white" },
+  { label: "Show All", color: "black" },
 ];
 
 export const comicAbbreviationMap = {

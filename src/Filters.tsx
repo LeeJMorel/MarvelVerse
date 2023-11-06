@@ -5,10 +5,17 @@ import { FilterOption } from "./types";
 interface FiltersProps {
   filterOptions: FilterOption[];
   onFilterChange: (label: string | null) => void;
+  isMobile: boolean; // Pass isMobile from the parent component
 }
 
-const Filters: React.FC<FiltersProps> = ({ filterOptions, onFilterChange }) => {
-  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+const Filters: React.FC<FiltersProps> = ({
+  filterOptions,
+  onFilterChange,
+  isMobile,
+}) => {
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(
+    "Show All"
+  );
 
   const handleFilterClick = (filter: FilterOption) => {
     if (selectedFilter === filter.label) {
@@ -24,7 +31,11 @@ const Filters: React.FC<FiltersProps> = ({ filterOptions, onFilterChange }) => {
 
   return (
     <div>
-      <ButtonGroup variant="contained" color="primary">
+      <ButtonGroup
+        variant="contained"
+        color="primary"
+        orientation={isMobile ? "vertical" : "horizontal"}
+      >
         {filterOptions.map((option) => (
           <Button
             key={option.label}
