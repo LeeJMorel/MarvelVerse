@@ -4,7 +4,12 @@ import Timeline from "./Timeline";
 import Network from "./Network";
 import NetworkFilters from "./NetworkFilters";
 import Filters from "./Filters";
-import { SelectedNetworkFilter, filterOptions } from "./types"; // Import the necessary types
+import {
+  FilterOption,
+  SelectedNetworkFilter,
+  defaultFilter,
+  filterOptions,
+} from "./types";
 
 function App() {
   const [view, setView] = useState("Timeline");
@@ -42,9 +47,10 @@ function App() {
     }
   }, [menuOpen]);
 
-  const [currentFilter, setCurrentFilter] = useState<string | null>("Show All");
+  const [currentFilter, setCurrentFilter] =
+    useState<FilterOption>(defaultFilter);
 
-  const handleFilterChange = (filter: string | null) => {
+  const handleFilterChange = (filter: FilterOption) => {
     setCurrentFilter(filter);
   };
 
@@ -66,32 +72,39 @@ function App() {
         <button onClick={() => setView("Timeline")}>Timeline</button>
       </header>
 
-      {isMobile && (
-        <aside className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-          <div className="mobile-menu-content" ref={menuContentRef}>
-            <div className="mobile-menu-content.row">
-              <button onClick={() => setView("Network")}>Network</button>
-              <button onClick={() => setView("Timeline")}>Timeline</button>
-            </div>
-            {view === "Network" ? (
-              <NetworkFilters onFilterChange={handleNetworkFilterChange} />
-            ) : (
-              <Filters
-                filterOptions={filterOptions}
-                onFilterChange={handleFilterChange}
-                isMobile={true}
-              />
-            )}
-            <p>Data provided by Marvel. ©2023 Marvel</p>
+      <aside className={`mobile-menu ${isMobile ? "isVisible" : ""}`}>
+        <div className="mobile-menu-content" ref={menuContentRef}>
+          <div className="mobile-menu-content.row">
+            <button onClick={() => setView("Network")}>Network</button>
+            <button onClick={() => setView("Timeline")}>Timeline</button>
           </div>
-          <button
-            className="mobile-menu-button"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? "<" : ">"}
-          </button>
-        </aside>
-      )}
+          {view === "Network" ? (
+            <NetworkFilters onFilterChange={handleNetworkFilterChange} />
+          ) : (
+            <Filters
+              filterOptions={filterOptions}
+              onFilterChange={handleFilterChange}
+              isMobile={true}
+            />
+          )}
+          {view === "Timeline" && (
+            <div className="keyboard-shortcuts">
+              <div>Zoom In: Click</div>
+              <div>Zoom Out: Alt + Click</div>
+              <div>Zoom Custom: Shift + Click + Drag</div>
+              <div>Pan: Click + Drag</div>
+              <div>Reset: Esc</div>
+            </div>
+          )}
+          <p>Data provided by Marvel. ©2023 Marvel</p>
+        </div>
+        <button
+          className="mobile-menu-button"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "<" : ">"}
+        </button>
+      </aside>
 
       <div className="app-container">
         <div className="app-body">

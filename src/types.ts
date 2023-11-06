@@ -4,6 +4,8 @@ export interface FilterOption {
   color: string;
 }
 
+export const defaultFilter = { label: "Show All", color: "black" };
+
 export const filterOptions: FilterOption[] = [
   { label: "Avengers", color: "blue" },
   { label: "Spiderman", color: "#b00e13" },

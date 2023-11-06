@@ -126,11 +126,11 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
   background-color: $marvel-red-primary;
   transition: left 0.3s ease;
   z-index: 1001;
-  display: flex;
+  display: none;
   flex-direction: row;
 
-  &.open {
-    left: 0;
+  &.isVisible {
+    display: flex;
   }
 
   .mobile-menu-content {
@@ -139,6 +139,8 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 100%;
+    overflow-y: auto;
 
     .row {
       display: flex;
@@ -183,5 +185,11 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
 .mobile-menu {
   @media (max-width: 768px), (max-height: 500px) {
     display: flex;
+  }
+}
+
+@media (max-width: 768px), (max-height: 500px) {
+  .app-body {
+    margin-left: 30px;
   }
 }

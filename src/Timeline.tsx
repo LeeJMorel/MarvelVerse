@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import "./App.scss";
-import { comicAbbreviationMap } from "./types";
-import {
-  Timeline as SVGTimeline,
-  deriveTimelineTheme,
-} from "react-svg-timeline";
+import { FilterOption, comicAbbreviationMap } from "./types";
+import { Timeline as SVGTimeline } from "react-svg-timeline";
 import marvelComicData from "./data/marvel_comic_filtered.json";
 import AutoSizer, { Size } from "react-virtualized-auto-sizer";
-import { useTheme } from "@mui/material";
+import CustomTimelineTheme from "./TimelineTheme";
 
 interface TimelineProps {
-  filter: string | null;
+  filter: FilterOption;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,9 +59,6 @@ function parseDateToMillis(dateString) {
 const dateFormat = (ms: number) => new Date(ms).toLocaleString();
 
 const Timeline: React.FC<TimelineProps> = ({ filter }) => {
-  const materialTheme = useTheme();
-  const theme = deriveTimelineTheme(materialTheme.palette.mode, materialTheme);
-
   function filterComicDataByGrouping(comicData, filterName) {
     const groupingKey = Object.keys(comicAbbreviationMap).find(
       (key) => comicAbbreviationMap[key] === filterName
@@ -79,7 +73,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
   }
   const filteredAvengersComics = filterComicDataByGrouping(
     marvelComicData,
-    filter
+    filter.label
   );
 
   // Get unique comic names
@@ -107,7 +101,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
   return (
     <div className="app-body graph-container">
       <h2>Comic series Marvel has published over time</h2>
-      {filter === "Show All" ? (
+      {filter.label === "Show All" ? (
         <AutoSizer>
           {({ width, height }: Size) => (
             <SVGTimeline
@@ -117,7 +111,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
               lanes={lanes}
               dateFormat={dateFormat}
               enableEventClustering={true}
-              theme={theme}
+              theme={CustomTimelineTheme(filter)}
             />
           )}
         </AutoSizer>
@@ -130,7 +124,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
               events={events}
               lanes={seriesLanes}
               dateFormat={dateFormat}
-              theme={theme}
+              theme={CustomTimelineTheme(filter)}
             />
           )}
         </AutoSizer>

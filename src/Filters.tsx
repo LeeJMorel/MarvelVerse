@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup } from "@mui/material";
-import { FilterOption } from "./types";
+import { FilterOption, defaultFilter } from "./types";
 
 interface FiltersProps {
   filterOptions: FilterOption[];
-  onFilterChange: (label: string | null) => void;
+  onFilterChange: (filter: FilterOption) => void;
   isMobile: boolean; // Pass isMobile from the parent component
 }
 
@@ -13,19 +13,18 @@ const Filters: React.FC<FiltersProps> = ({
   onFilterChange,
   isMobile,
 }) => {
-  const [selectedFilter, setSelectedFilter] = useState<string | null>(
-    "Show All"
-  );
+  const [selectedFilter, setSelectedFilter] =
+    useState<FilterOption>(defaultFilter);
 
   const handleFilterClick = (filter: FilterOption) => {
-    if (selectedFilter === filter.label) {
+    if (selectedFilter.label === filter.label) {
       // Deselect the filter
-      setSelectedFilter(null);
-      onFilterChange(null);
+      setSelectedFilter(defaultFilter);
+      onFilterChange(defaultFilter);
     } else {
       // Select the filter
-      setSelectedFilter(filter.label);
-      onFilterChange(filter.label);
+      setSelectedFilter(filter);
+      onFilterChange(filter);
     }
   };
 
@@ -42,7 +41,9 @@ const Filters: React.FC<FiltersProps> = ({
             onClick={() => handleFilterClick(option)}
             style={{
               backgroundColor:
-                selectedFilter === option.label ? option.color : "transparent",
+                selectedFilter.label === option.label
+                  ? option.color
+                  : "transparent",
             }}
           >
             {option.label}
