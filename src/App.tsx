@@ -10,6 +10,7 @@ import {
   defaultFilter,
   filterOptions,
 } from "./types";
+import { Link } from "@mui/material";
 
 function App() {
   const [view, setView] = useState("Timeline");
@@ -74,6 +75,19 @@ function App() {
 
       <aside className={`mobile-menu ${isMobile ? "isVisible" : ""}`}>
         <div className="mobile-menu-content" ref={menuContentRef}>
+          <div className="references">
+            {view === "Timeline" && (
+              <Link
+                href="https://gitlab.cs.washington.edu/cse442/23au/a3/MarvelGraph/-/blob/main/PROCESS.md?ref_type=heads"
+                underline="hover"
+              >
+                View our A3 writeup
+              </Link>
+            )}
+            <Link href="https://www.marvel.com/" underline="hover">
+              Data provided by Marvel. ©2023 Marvel
+            </Link>
+          </div>
           <div className="mobile-menu-content.row">
             <button onClick={() => setView("Network")}>Network</button>
             <button onClick={() => setView("Timeline")}>Timeline</button>
@@ -96,7 +110,6 @@ function App() {
               <div>Reset: Esc</div>
             </div>
           )}
-          <p>Data provided by Marvel. ©2023 Marvel</p>
         </div>
         <button
           className="mobile-menu-button"
@@ -138,7 +151,19 @@ function App() {
             />
           )}
         </div>
-        <p>Data provided by Marvel. ©2023 Marvel</p>
+        <div className="references">
+          {view === "Timeline" && (
+            <Link
+              href="https://gitlab.cs.washington.edu/cse442/23au/a3/MarvelGraph/-/blob/main/PROCESS.md?ref_type=heads"
+              underline="hover"
+            >
+              View our A3 writeup
+            </Link>
+          )}
+          <Link href="https://www.marvel.com/" underline="hover">
+            Data provided by Marvel. ©2023 Marvel
+          </Link>
+        </div>
       </footer>
     </>
   );

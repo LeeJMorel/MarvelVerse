@@ -101,6 +101,7 @@ const Timeline: React.FC<TimelineProps> = ({ filter }) => {
   return (
     <div className="app-body graph-container">
       <h2>Comic series Marvel has published over time</h2>
+      <h5>For comic series lasting longer than 5 years</h5>
       {filter.label === "Show All" ? (
         <AutoSizer>
           {({ width, height }: Size) => (

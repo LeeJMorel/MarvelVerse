@@ -76,6 +76,15 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
       flex: 1;
     }
   }
+  /* Override padding for header elements */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
 }
 
 .app-footer {
@@ -115,6 +124,12 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
 
   p {
     color: white;
+  }
+
+  .references {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
 }
 
@@ -158,6 +173,11 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
       &:hover {
         background-color: $marvel-red-secondary;
       }
+    }
+    .references {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
     }
   }
 
