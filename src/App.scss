@@ -75,6 +75,23 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
       margin: 20px 0;
       flex: 1;
     }
+
+    .writeup {
+      padding: 20px;
+      margin: 20px 0;
+      flex: 1;
+      overflow: auto;
+      justify-content: center;
+      align-items: center;
+
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        text-align: left;
+      }
+    }
   }
   /* Override padding for header elements */
   h1,
@@ -119,6 +136,19 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
       &:hover {
         background-color: $marvel-red-secondary;
       }
+    }
+  }
+
+  button {
+    background-color: $marvel-red-button;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $marvel-red-secondary;
     }
   }
 

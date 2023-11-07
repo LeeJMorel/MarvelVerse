@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import Timeline from "./Timeline";
 import Network from "./Network";
+import A3Writeup from "./A3Writeup";
+import FinalWriteup from "./FinalWriteup";
 import NetworkFilters from "./NetworkFilters";
 import Filters from "./Filters";
 import {
@@ -77,12 +79,13 @@ function App() {
         <div className="mobile-menu-content" ref={menuContentRef}>
           <div className="references">
             {view === "Timeline" && (
-              <Link
-                href="https://gitlab.cs.washington.edu/cse442/23au/a3/MarvelGraph/-/blob/main/PROCESS.md?ref_type=heads"
-                underline="hover"
-              >
-                View our A3 writeup
-              </Link>
+              <button onClick={() => setView("A3Writeup")}>A3 Writeup</button>
+            )}
+
+            {view === "Network" && (
+              <button onClick={() => setView("FinalWriteup")}>
+                Final Writeup
+              </button>
             )}
             <Link href="https://www.marvel.com/" underline="hover">
               Data provided by Marvel. ©2023 Marvel
@@ -124,6 +127,10 @@ function App() {
           {window.innerWidth > 768 || window.innerHeight < window.innerWidth ? (
             view === "Network" ? (
               <Network filter={currentNetworkFilter} />
+            ) : view === "A3Writeup" ? (
+              <A3Writeup />
+            ) : view === "FinalWriteup" ? (
+              <FinalWriteup />
             ) : (
               <Timeline filter={currentFilter} />
             )
@@ -153,12 +160,13 @@ function App() {
         </div>
         <div className="references">
           {view === "Timeline" && (
-            <Link
-              href="https://gitlab.cs.washington.edu/cse442/23au/a3/MarvelGraph/-/blob/main/PROCESS.md?ref_type=heads"
-              underline="hover"
-            >
-              View our A3 writeup
-            </Link>
+            <button onClick={() => setView("A3Writeup")}>A3 Writeup</button>
+          )}
+
+          {view === "Network" && (
+            <button onClick={() => setView("FinalWriteup")}>
+              Final Writeup
+            </button>
           )}
           <Link href="https://www.marvel.com/" underline="hover">
             Data provided by Marvel. ©2023 Marvel
