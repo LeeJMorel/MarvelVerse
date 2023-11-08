@@ -7,6 +7,7 @@ const A3Writeup: React.FC = () => {
   return (
     <div className="app-body writeup">
       <h2>{title}</h2>
+
       <h4>Design Rationale:</h4>
       <p>
         Our goal was to visualize a timeline of all the core, enduring
@@ -35,7 +36,7 @@ const A3Writeup: React.FC = () => {
         that many of these comics didn't tell the story of Marvel over time. We
         aggregated the data set first by removing broken data (about 1,000
         entries), then we filtered out any comic series that didn't last for at
-        least 5 years, beacuse many titles in the dataset were miniseries or
+        least 5 years, because many titles in the dataset were miniseries or
         other short publications that don't support the focus of the
         visualization. This brought our data down to roughly 12k+ comics. Chris
         sorted through this manually and placed each comic series into major
@@ -52,7 +53,7 @@ const A3Writeup: React.FC = () => {
         more. Additionally, we begin our visualization from 1961, per the dawn of
         the "Marvel Age" as described in our design rationale.
       </p>
-      <h4>Group Members Role:</h4>
+      <h4>Development Process/Group Members Role:</h4>
       <p>
         Lee: Worked on creating the base of the MarvelVerse website, including
         implementation of the header, footer, and screen filter buttons. Lee also
@@ -76,6 +77,17 @@ const A3Writeup: React.FC = () => {
         studying and examining the react-svg-timeline that we were using for the
         timeline implementation so that we could change the theme. Finally,
         Patrick co-developed our writeup.
+      </p>
+      <p>
+        After determining a compelling question along with a dataset that could
+        support it, our development process was begun by setting up the GUI
+        interface for our visualization, followed by managing the dataset
+        including data cleaning and development of our data "keys" and filters.
+        We identified a visualization package that was robust enough to provide
+        the kind of visualizations we were looking for and implemented it,
+        customizing its functionality to support our particular project. The
+        aspects that took the most time include the GUI development, dataset
+        optimization, and visualization package implementation and customization.
       </p>
     </div>
   );
