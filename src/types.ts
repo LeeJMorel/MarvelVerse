@@ -25,11 +25,6 @@ export const comicAbbreviationMap = {
   DEF: "Defenders",
 };
 
-//just a placeholder
-export interface SelectedNetworkFilter {
-  placeholder: "I'll have data soon!";
-}
-
 export interface ComicData {
   comic_name: string;
   active_years: string;

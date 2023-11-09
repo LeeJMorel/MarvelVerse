@@ -4,14 +4,8 @@ import Timeline from "./Timeline";
 import Network from "./Network";
 import A3Writeup from "./A3Writeup";
 import FinalWriteup from "./FinalWriteup";
-import NetworkFilters from "./NetworkFilters";
 import Filters from "./Filters";
-import {
-  FilterOption,
-  SelectedNetworkFilter,
-  defaultFilter,
-  filterOptions,
-} from "./types";
+import { FilterOption, defaultFilter, filterOptions } from "./types";
 import { Link } from "@mui/material";
 
 function App() {
@@ -57,16 +51,6 @@ function App() {
     setCurrentFilter(filter);
   };
 
-  //This is just a placeholder
-  const [currentNetworkFilter, setCurrentNetworkFilter] =
-    useState<SelectedNetworkFilter>({
-      placeholder: "I'll have data soon!",
-    });
-
-  const handleNetworkFilterChange = (filter: SelectedNetworkFilter) => {
-    setCurrentNetworkFilter(filter);
-  };
-
   return (
     <>
       <header className="app-header">
@@ -96,7 +80,7 @@ function App() {
             <button onClick={() => setView("Timeline")}>Timeline</button>
           </div>
           {view === "Network" ? (
-            <NetworkFilters onFilterChange={handleNetworkFilterChange} />
+            <h2>coming in Final Project</h2>
           ) : (
             <Filters
               filterOptions={filterOptions}
@@ -126,7 +110,7 @@ function App() {
         <div className="app-body">
           {window.innerWidth > 768 || window.innerHeight < window.innerWidth ? (
             view === "Network" ? (
-              <Network filter={currentNetworkFilter} />
+              <Network filter={currentFilter} />
             ) : view === "A3Writeup" ? (
               <A3Writeup />
             ) : view === "FinalWriteup" ? (
@@ -149,7 +133,7 @@ function App() {
         )}
         <div className="filter-container">
           {view === "Network" ? (
-            <NetworkFilters onFilterChange={handleNetworkFilterChange} />
+            <h2>coming in Final Project</h2>
           ) : (
             <Filters
               filterOptions={filterOptions}
