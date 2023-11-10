@@ -19,12 +19,17 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.15",
+    "@react-sigma/core": "^3.4.2",
     "@types/d3": "^7.4.2",
     "d3": "^7.8.5",
+    "graphology": "^0.25.4",
+    "graphology-types": "^0.24.7",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-svg-timeline": "^0.24.2",
-    "react-virtualized-auto-sizer": "^1.0.20"
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "sigma": "^2.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.30",

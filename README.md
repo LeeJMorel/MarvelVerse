@@ -23,6 +23,7 @@ In addition, MarvelVerse provides an array of filters for you to narrow down and
 - **[Marvel API](https://developer.marvel.com/)**: The source of our rich Marvel universe data.
 - **[Kaggle](https://www.kaggle.com/datasets/deepcontractor/marvel-comic-books)**: Author Deep Contractor aggregated some of the Marvel API data into .csv files for ease of use.
 - **[React SVG TimeLine](https://github.com/netzwerg/react-svg-timeline)**: The magic behind our interactive and dynamic timeline visualizations.
+- **[React Sigma.js](https://sim51.github.io/react-sigma/docs/start-installation)**: Working together with Gephi to build our engaging network visualizations.
 - **[Material UI](https://mui.com/material-ui/)**: A robust UI framework for accessible components and a smooth user experience.
 
 ## Authors
