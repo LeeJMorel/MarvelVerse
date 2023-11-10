@@ -8,8 +8,9 @@ interface NetworkProps {
 }
 
 const Network: React.FC<NetworkProps> = ({ filter }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showSocialPost, setShowSocialPost] = useState(false);
+  //This is for us to build without changing the main view for A3
+  const [showSocialPost] = useState(false);
+
   return (
     <div className="app-body network-container">
       {showSocialPost && <SocialPost />}
