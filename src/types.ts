@@ -25,6 +25,14 @@ export const comicAbbreviationMap = {
   DEF: "Defenders",
 };
 
+export interface SocialPostProps {
+  username: string;
+  profile?: string;
+  comicsCount: number;
+  followersCount: number;
+  followingList: string[];
+}
+
 export interface ComicData {
   comic_name: string;
   active_years: string;
