@@ -13,8 +13,11 @@ import {
   FullScreenControl,
   SearchControl,
 } from "@react-sigma/core";
-import jsonGraph from "../src/data/temp2.json";
+import rawJson from "../src/data/temp2.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const jsonGraph: any = rawJson;
 
 const fakeUsersData: Record<string, SocialPostProps> = {
   ironMan: {
