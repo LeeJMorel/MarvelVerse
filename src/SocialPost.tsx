@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -9,12 +8,28 @@ import {
   MenuItem,
   Select,
   Typography,
+  SelectChangeEvent,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
 import Kapow from "./assets/kapow.png";
 import "./App.scss";
+import { SocialPostProps } from "./types";
+import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
-const SocialPost = () => {
+interface SocialPostPropsWithCallback extends SocialPostProps {
+  onFollowingChange: (selectedUser: string) => void;
+}
+
+const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
+  username,
+  profile,
+  comicsCount,
+  followersCount,
+  followingList,
+  onFollowingChange,
+}) => {
   const [liked, setLiked] = useState(false);
   const [showLikedMessage, setShowLikedMessage] = useState(false);
 
@@ -26,6 +41,11 @@ const SocialPost = () => {
     setTimeout(() => {
       setShowLikedMessage(false);
     }, 2000);
+  };
+
+  const handleFollowingChange = (event: SelectChangeEvent<string>) => {
+    console.log("Selected value:", event.target.value);
+    onFollowingChange(event.target.value);
   };
 
   return (
@@ -47,21 +67,46 @@ const SocialPost = () => {
           </div>
         </div>
         <CardHeader
-          title="User Name"
-          subheader="Comics: 100 | Followers: 500 | Following: 200"
+          title={username}
+          subheader={`Comics: ${comicsCount} | Followers: ${followersCount} | Following: ${followingList.length}`}
         />
         <img src="url-to-heros-image" alt="User's Post" />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Description of the post goes here.
+            {profile}
           </Typography>
         </CardContent>
         <div className="actions">
-          <Select value="following" variant="outlined">
-            <MenuItem value="following">Following</MenuItem>
-            {/* Add the heros connected to them here */}
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <InputLabel id="select-label">Following</InputLabel>
+          <Select
+            labelId="select-label"
+            id="select"
+            value=""
+            onChange={handleFollowingChange}
+            label="Following"
+          >
+            <MenuItem value="" disabled>
+              Following
+            </MenuItem>
+            {followingList.map((follower) => (
+              <MenuItem key={follower} value={follower}>
+                {follower}
+              </MenuItem>
+            ))}
           </Select>
-          <Button variant="outlined">Share</Button>
+          </FormControl>
+          <div className="share-buttons">
+          <FacebookShareButton url={window.location.href} quote={`Check out ${username}'s Marvel Character!`}>
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+          <WhatsappShareButton url={window.location.href} title={`Check out ${username}'s Marvel Character!`}>
+            <WhatsappIcon size={32} round />
+          </WhatsappShareButton>
+          <EmailShareButton url={window.location.href} subject={`Check out ${username}'s Marvel Character!`} body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}>
+            <EmailIcon size={32} round />
+          </EmailShareButton>
+          </div>
         </div>
       </Card>
     </div>
