@@ -4,7 +4,7 @@ import "./App.scss";
 import { FilterOption } from "./types";
 import SocialPost from "./SocialPost";
 import { SocialPostProps, UserData } from "./types";
-import graphData from "../src/data/data.json";
+import graphData from "../src/data/marvelShowAll.json";
 import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
