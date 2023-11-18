@@ -51,6 +51,11 @@ export interface ComicData {
   Event?: string;
 }
 
+export interface UserData {
+  label: string;
+  comic: string;
+}
+
 export interface Node {
   label: string;
   x: number;

@@ -1,45 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import "./App.scss";
 import { FilterOption } from "./types";
 import SocialPost from "./SocialPost";
-import { SocialPostProps } from "./types";
+import { SocialPostProps, UserData } from "./types";
 import graphData from "../src/data/data.json";
+import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataGraph: any = graphData;
-
-const fakeUsersData: Record<string, SocialPostProps> = {
-  ironMan: {
-    username: "Iron Man",
-    profile: "Genius, billionaire, playboy, philanthropist.",
-    comicsCount: 100,
-    followersCount: 500,
-    followingList: ["captainAmerica", "thor", "blackWidow"],
-  },
-  captainAmerica: {
-    username: "Captain America",
-    profile: "Super-soldier and leader of the Avengers.",
-    comicsCount: 80,
-    followersCount: 300,
-    followingList: ["ironMan", "blackWidow", "hulk"],
-  },
-  thor: {
-    username: "Thor",
-    profile: "God of Thunder and prince of Asgard.",
-    comicsCount: 120,
-    followersCount: 700,
-    followingList: ["ironMan", "captainAmerica", "hulk"],
-  },
-  blackWidow: {
-    username: "Black Widow",
-    profile: "Master spy and assassin, former KGB agent.",
-    comicsCount: 90,
-    followersCount: 400,
-    followingList: ["ironMan", "captainAmerica", "thor"],
-  },
-};
+const dataUser: UserData[] = userData as UserData[];
 
 interface NetworkProps {
   filter: FilterOption;
@@ -47,35 +18,60 @@ interface NetworkProps {
 
 const Network: React.FC<NetworkProps> = ({ filter }) => {
   const [showSocialPost, setShowSocialPost] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<string | null>(null);
+  const [socialPostData, setSocialPostData] = useState<SocialPostProps | null>(
+    null
+  );
 
   const handleFollowingChange = (selectedUser: string): void => {
-    const userData: SocialPostProps | undefined = fakeUsersData[selectedUser];
+    // Find the selected user in the Marvel map
+    const userInMarvelMap = dataUser.find(
+      (entry) => entry.label === selectedUser
+    );
 
-    if (userData) {
-      console.log("Selected User Data:", userData);
-      setSelectedUser(selectedUser);
+    if (userInMarvelMap) {
+      const comicsForUser = dataUser.filter(
+        (entry) => entry.label === selectedUser
+      );
+      const comicsCount = comicsForUser.length;
+
+      // Get unique names in matching comics
+      const uniqueNames = Array.from(
+        new Set(
+          dataUser.map((entry: any) => entry.label).filter(Boolean) as string[]
+        )
+      );
+      // Get followers count (total count of comics that the user appears in)
+      const followersCount = dataUser.filter((entry) =>
+        uniqueNames.includes(entry.comic)
+      ).length;
+
+      const socialPost: SocialPostProps = {
+        username: selectedUser,
+        comicsCount,
+        followersCount,
+        followingList: uniqueNames,
+      };
+
+      setSocialPostData(socialPost);
       setShowSocialPost(true);
     } else {
       setShowSocialPost(false);
-      console.error("User not found in fakeUsersData");
+      console.error("User not found");
     }
   };
 
-  const handleTestButtonClick = () => {
-    const testUser = "ironMan";
-    handleFollowingChange(testUser);
+  const handleNodeClick = (label: string): void => {
+    handleFollowingChange(label);
   };
 
   return (
     <div className="app-body network-container">
-      {showSocialPost && selectedUser && (
+      {showSocialPost && socialPostData && (
         <SocialPost
-          username={fakeUsersData[selectedUser].username}
-          profile={fakeUsersData[selectedUser].profile}
-          comicsCount={fakeUsersData[selectedUser].comicsCount}
-          followersCount={fakeUsersData[selectedUser].followersCount}
-          followingList={fakeUsersData[selectedUser].followingList}
+          username={socialPostData.username}
+          comicsCount={socialPostData.comicsCount}
+          followersCount={socialPostData.followersCount}
+          followingList={socialPostData.followingList}
           onFollowingChange={(user) => handleFollowingChange(user)}
         />
       )}
@@ -84,10 +80,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
         <div className="title">
           <p>Current Filter: {filter.label}</p>
         </div>
-        <SigmaGraphViewer data={dataGraph} />
-        {showSocialPost && (
-          <button onClick={handleTestButtonClick}>Test Button</button>
-        )}
+        <SigmaGraphViewer data={dataGraph} onNodeClick={handleNodeClick} />
       </div>
     </div>
   );

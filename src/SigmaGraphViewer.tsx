@@ -24,9 +24,10 @@ import { GraphData } from "./types";
 
 interface SigmaGraphViewerProps {
   data: GraphData;
+  onNodeClick: (label: string) => void;
 }
 
-const MyGraph: FC<{ data: GraphData }> = ({ data }) => {
+const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick }) => {
   const loadGraph = useLoadGraph();
   const sigma = useSigma();
   const registerEvents = useRegisterEvents();
@@ -52,8 +53,14 @@ const MyGraph: FC<{ data: GraphData }> = ({ data }) => {
     registerEvents({
       enterNode: (event) => setHoveredNode(event.node),
       leaveNode: () => setHoveredNode(null),
+      clickNode: (event) => {
+        const clickedNode = sigma
+          .getGraph()
+          .getNodeAttributes(event.node).label;
+        onNodeClick(clickedNode);
+      },
     });
-  }, [data, loadGraph, registerEvents]);
+  }, [data, loadGraph, registerEvents, onNodeClick, sigma]);
 
   useEffect(() => {
     setSettings({
@@ -92,7 +99,10 @@ const MyGraph: FC<{ data: GraphData }> = ({ data }) => {
   return null;
 };
 
-export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({ data }) => {
+export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
+  data,
+  onNodeClick,
+}) => {
   return (
     <SigmaContainer
       style={{
@@ -122,7 +132,7 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({ data }) => {
       <ControlsContainer position={"top-right"}>
         <SearchControl style={{ width: "200px" }} />
       </ControlsContainer>
-      <MyGraph data={data} />
+      <MyGraph data={data} onNodeClick={onNodeClick} />
     </SigmaContainer>
   );
 };
