@@ -21,30 +21,7 @@ import { MdFilterCenterFocus } from "react-icons/md";
 import { MultiDirectedGraph } from "graphology";
 import "./App.scss";
 import { Attributes } from "graphology-types";
-
-interface Node {
-  label: string;
-  x: number;
-  y: number;
-  id: string;
-  attributes: Record<string, any>;
-  color: string;
-  size: number;
-}
-
-interface Edge {
-  source: string;
-  target: string;
-  id: string;
-  attributes: Record<string, any>;
-  color: string;
-  size: number;
-}
-
-interface GraphData {
-  nodes: Node[];
-  edges: Edge[];
-}
+import { GraphData } from "./types";
 
 interface SigmaGraphViewerProps {
   data: GraphData;

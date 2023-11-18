@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 //filter for both visualizations
 export interface FilterOption {
   label: string;
@@ -48,4 +49,28 @@ export interface ComicData {
   Price: string;
   Grouping?: string;
   Event?: string;
+}
+
+export interface Node {
+  label: string;
+  x: number;
+  y: number;
+  id: string;
+  attributes: Record<string, any>;
+  color: string;
+  size: number;
+}
+
+export interface Edge {
+  source: string;
+  target: string;
+  id: string;
+  attributes: Record<string, any>;
+  color: string;
+  size: number;
+}
+
+export interface GraphData {
+  nodes: Node[];
+  edges: Edge[];
 }

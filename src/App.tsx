@@ -9,7 +9,7 @@ import { FilterOption, defaultFilter, filterOptions } from "./types";
 import { Link } from "@mui/material";
 
 function App() {
-  const [view, setView] = useState("Timeline");
+  const [view, setView] = useState("Network");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuContentRef = useRef<HTMLDivElement | null>(null);
@@ -79,15 +79,11 @@ function App() {
             <button onClick={() => setView("Network")}>Network</button>
             <button onClick={() => setView("Timeline")}>Timeline</button>
           </div>
-          {view === "Network" ? (
-            <h2>coming in Final Project</h2>
-          ) : (
-            <Filters
-              filterOptions={filterOptions}
-              onFilterChange={handleFilterChange}
-              isMobile={true}
-            />
-          )}
+          <Filters
+            filterOptions={filterOptions}
+            onFilterChange={handleFilterChange}
+            isMobile={true}
+          />
           {view === "Timeline" && (
             <div className="keyboard-shortcuts">
               <div>Zoom In: Click</div>
@@ -132,15 +128,11 @@ function App() {
           </div>
         )}
         <div className="filter-container">
-          {view === "Network" ? (
-            <h2>coming in Final Project</h2>
-          ) : (
-            <Filters
-              filterOptions={filterOptions}
-              onFilterChange={handleFilterChange}
-              isMobile={false}
-            />
-          )}
+          <Filters
+            filterOptions={filterOptions}
+            onFilterChange={handleFilterChange}
+            isMobile={false}
+          />
         </div>
         <div className="references">
           {view === "Timeline" && (
