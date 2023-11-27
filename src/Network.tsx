@@ -86,7 +86,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
   return (
     <div className="app-body network-container">
       {!showSocialPost && (
-        <HowToPost onClose={() => setShowSocialPost(false)} />
+        <HowToPost filter={filter} onClose={() => setShowSocialPost(false)} />
       )}
 
       {showSocialPost && socialPostData && (
