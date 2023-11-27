@@ -4,14 +4,30 @@ import "./App.scss";
 import { FilterOption } from "./types";
 import SocialPost from "./SocialPost";
 import { SocialPostProps, UserData } from "./types";
-import graphData from "../src/data/marvelShowAll.json";
+import AVE from "../src/data/avengers.json";
+import SPI from "../src/data/spiderman.json";
+import XM from "../src/data/xmen.json";
+import FF from "../src/data/fantastic4.json";
+import MS from "../src/data/midnight_sons.json";
+import DEF from "../src/data/defenders.json";
+import graphData from "../src/data/data.json";
 import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
+import { SigmaTeamViewer } from "./SigmaTeamViewer";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
+import HowToPost from "./HowToPost";
 
-const dataGraph: any = graphData;
 const dataUser: UserData[] = userData as UserData[];
 
+const graphDataMap = {
+  Avengers: AVE,
+  Spiderman: SPI,
+  "X-Men": XM,
+  "Fantastic Four": FF,
+  "Midnight Sons": MS,
+  Defenders: DEF,
+  "Show All": graphData,
+};
 interface NetworkProps {
   filter: FilterOption;
 }
@@ -21,6 +37,9 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
   const [socialPostData, setSocialPostData] = useState<SocialPostProps | null>(
     null
   );
+
+  const dataGraph: any = graphDataMap[filter.label];
+  const graphData = dataGraph;
 
   const handleFollowingChange = (selectedUser: string): void => {
     // Find the selected user in the Marvel map
@@ -66,6 +85,10 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
 
   return (
     <div className="app-body network-container">
+      {!showSocialPost && (
+        <HowToPost onClose={() => setShowSocialPost(false)} />
+      )}
+
       {showSocialPost && socialPostData && (
         <SocialPost
           username={socialPostData.username}
@@ -73,14 +96,16 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
           followersCount={socialPostData.followersCount}
           followingList={socialPostData.followingList}
           onFollowingChange={(user) => handleFollowingChange(user)}
+          onClose={() => setShowSocialPost(false)}
         />
       )}
 
       <div className="network-graph-container">
-        <div className="title">
-          <p>Current Filter: {filter.label}</p>
-        </div>
-        <SigmaGraphViewer data={dataGraph} onNodeClick={handleNodeClick} />
+        {filter.label === "Show All" ? (
+          <SigmaGraphViewer data={graphData} onNodeClick={handleNodeClick} />
+        ) : (
+          <SigmaTeamViewer data={graphData} onNodeClick={handleNodeClick} />
+        )}
       </div>
     </div>
   );

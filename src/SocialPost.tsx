@@ -13,13 +13,22 @@ import {
   InputLabel,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 import Kapow from "./assets/kapow.png";
 import "./App.scss";
 import { SocialPostProps } from "./types";
-import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
 interface SocialPostPropsWithCallback extends SocialPostProps {
   onFollowingChange: (selectedUser: string) => void;
+  onClose: () => void;
 }
 
 const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
@@ -29,6 +38,7 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
   followersCount,
   followingList,
   onFollowingChange,
+  onClose,
 }) => {
   const [liked, setLiked] = useState(false);
   const [showLikedMessage, setShowLikedMessage] = useState(false);
@@ -48,6 +58,10 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
     onFollowingChange(event.target.value);
   };
 
+  const handleCloseClick = () => {
+    onClose();
+  };
+
   return (
     <div className="social-container">
       <Card className="MuiCard-root">
@@ -64,6 +78,13 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
             >
               <Favorite />
             </IconButton>
+            <IconButton
+              aria-label="Close"
+              className="close-icon"
+              onClick={handleCloseClick}
+            >
+              <CloseIcon />
+            </IconButton>
           </div>
         </div>
         <CardHeader
@@ -77,35 +98,45 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
           </Typography>
         </CardContent>
         <div className="actions">
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <InputLabel id="select-label">Following</InputLabel>
-          <Select
-            labelId="select-label"
-            id="select"
-            value=""
-            onChange={handleFollowingChange}
-            label="Following"
-          >
-            <MenuItem value="" disabled>
-              Following
-            </MenuItem>
-            {followingList.map((follower) => (
-              <MenuItem key={follower} value={follower}>
-                {follower}
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="select-label">Following</InputLabel>
+            <Select
+              labelId="select-label"
+              id="select"
+              value=""
+              onChange={handleFollowingChange}
+              label="Following"
+            >
+              <MenuItem value="" disabled>
+                Following
               </MenuItem>
-            ))}
-          </Select>
+              {followingList.map((follower) => (
+                <MenuItem key={follower} value={follower}>
+                  {follower}
+                </MenuItem>
+              ))}
+            </Select>
           </FormControl>
           <div className="share-buttons">
-          <FacebookShareButton url={window.location.href} quote={`Check out ${username}'s Marvel Character!`}>
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-          <WhatsappShareButton url={window.location.href} title={`Check out ${username}'s Marvel Character!`}>
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
-          <EmailShareButton url={window.location.href} subject={`Check out ${username}'s Marvel Character!`} body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}>
-            <EmailIcon size={32} round />
-          </EmailShareButton>
+            <FacebookShareButton
+              url={window.location.href}
+              quote={`Check out ${username}'s Marvel Character!`}
+            >
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <WhatsappShareButton
+              url={window.location.href}
+              title={`Check out ${username}'s Marvel Character!`}
+            >
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+            <EmailShareButton
+              url={window.location.href}
+              subject={`Check out ${username}'s Marvel Character!`}
+              body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}
+            >
+              <EmailIcon size={32} round />
+            </EmailShareButton>
           </div>
         </div>
       </Card>
