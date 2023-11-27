@@ -53,16 +53,21 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
       );
       const comicsCount = comicsForUser.length;
 
+      // Extract the comics from comicsForUser
+      const userComics = comicsForUser.map((entry) => entry.comic);
+
+      // Filter dataUser to get all entries that match the user's comics
+      const entriesForUserComics = dataUser.filter((entry) =>
+        userComics.includes(entry.comic)
+      );
+
       // Get unique names in matching comics
       const uniqueNames = Array.from(
-        new Set(
-          dataUser.map((entry: any) => entry.label).filter(Boolean) as string[]
-        )
+        new Set(entriesForUserComics.map((entry) => entry.label))
       );
+
       // Get followers count (total count of comics that the user appears in)
-      const followersCount = dataUser.filter((entry) =>
-        uniqueNames.includes(entry.comic)
-      ).length;
+      const followersCount = entriesForUserComics.length;
 
       const socialPost: SocialPostProps = {
         username: selectedUser,
@@ -85,9 +90,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
 
   return (
     <div className="app-body network-container">
-      {!showSocialPost && (
-        <HowToPost filter={filter} onClose={() => setShowSocialPost(false)} />
-      )}
+      {!showSocialPost && <HowToPost filter={filter} />}
 
       {showSocialPost && socialPostData && (
         <SocialPost
