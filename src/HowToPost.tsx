@@ -3,25 +3,25 @@ import {
   Card,
   CardContent,
   CardHeader,
-  IconButton,
+  //IconButton,
   Typography,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+//import CloseIcon from "@mui/icons-material/Close";
 import "./App.scss";
 import { FilterOption } from "./types";
 
 interface HowToPostPropsWithCallback {
   filter: FilterOption;
-  onClose: () => void;
+  //onClose: () => void;
 }
 
 const HowToPost: React.FC<HowToPostPropsWithCallback> = ({
   filter,
-  onClose,
+  //onClose,
 }) => {
-  const handleCloseClick = () => {
-    onClose();
-  };
+  // const handleCloseClick = () => {
+  //   onClose();
+  // };
 
   // Define content for different filter labels
   const contentMap: Record<
@@ -83,7 +83,7 @@ const HowToPost: React.FC<HowToPostPropsWithCallback> = ({
       <Card className="MuiCard-root">
         <div className="social-heading">
           <h2 className="social-title">{title}</h2>
-          <div className="icon">
+          {/* <div className="icon">
             <IconButton
               aria-label="Close"
               className="close-icon"
@@ -91,7 +91,7 @@ const HowToPost: React.FC<HowToPostPropsWithCallback> = ({
             >
               <CloseIcon />
             </IconButton>
-          </div>
+          </div> */}
         </div>
         <CardHeader title={title} subheader={subheader} />
         <CardContent>
