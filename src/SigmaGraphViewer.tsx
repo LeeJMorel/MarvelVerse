@@ -70,7 +70,6 @@ const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick }) => {
           ...data,
           highlighted: data.highlighted || false,
         };
-
         if (hoveredNode) {
           if (
             node === hoveredNode ||
@@ -116,6 +115,7 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
         labelFont: "Lato, sans-serif",
         zIndex: true,
         defaultEdgeType: "arrow",
+        labelColor: { attribute: "string", color: "#FCFCFF" },
       }}
     >
       <ControlsContainer position="top-left">
