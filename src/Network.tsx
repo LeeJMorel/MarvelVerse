@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import "./App.scss";
-import { FilterOption } from "./types";
+import { FilterOption, profileBodyMap } from "./types";
 import SocialPost from "./SocialPost";
 import { SocialPostProps, UserData } from "./types";
 import AVE from "../src/data/avengers.json";
@@ -48,6 +48,9 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
     );
 
     if (userInMarvelMap) {
+      // eslint-disable-next-line no-useless-escape
+      const modifiedTitle = selectedUser.replace(/[.\[\]/-]/g, "");
+
       const comicsForUser = dataUser.filter(
         (entry) => entry.label === selectedUser
       );
@@ -74,7 +77,9 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
         comicsCount,
         followersCount,
         followingList: uniqueNames,
+        profile: profileBodyMap[modifiedTitle],
       };
+      console.log(profileBodyMap[modifiedTitle]);
 
       setSocialPostData(socialPost);
       setShowSocialPost(true);
@@ -98,6 +103,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
           comicsCount={socialPostData.comicsCount}
           followersCount={socialPostData.followersCount}
           followingList={socialPostData.followingList}
+          profile={socialPostData.profile}
           onFollowingChange={(user) => handleFollowingChange(user)}
           onClose={() => setShowSocialPost(false)}
         />

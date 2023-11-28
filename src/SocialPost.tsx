@@ -11,6 +11,7 @@ import {
   SelectChangeEvent,
   FormControl,
   InputLabel,
+  CardActions,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -25,6 +26,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
+import * as Images from "./assets/profiles/ProfilePhoto";
 
 interface SocialPostPropsWithCallback extends SocialPostProps {
   onFollowingChange: (selectedUser: string) => void;
@@ -42,6 +44,8 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
 }) => {
   const [liked, setLiked] = useState(false);
   const [showLikedMessage, setShowLikedMessage] = useState(false);
+  // eslint-disable-next-line no-useless-escape
+  const modifiedTitle = username.replace(/[.\[\]/-]/g, "");
 
   const handleLikeClick = () => {
     setLiked(!liked);
@@ -91,54 +95,61 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
           title={username}
           subheader={`Comics: ${comicsCount} | Followers: ${followersCount} | Following: ${followingList.length}`}
         />
-        <img src="url-to-heros-image" alt="User's Post" />
+        <div className="image-container">
+          <img
+            src={Images[modifiedTitle] || "default-image-url"}
+            alt={`Profile Picture for ${username}`}
+          />
+        </div>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {profile}
           </Typography>
         </CardContent>
-        <div className="actions">
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="select-label">Following</InputLabel>
-            <Select
-              labelId="select-label"
-              id="select"
-              value=""
-              onChange={handleFollowingChange}
-              label="Following"
-            >
-              <MenuItem value="" disabled>
-                Following
-              </MenuItem>
-              {followingList.map((follower) => (
-                <MenuItem key={follower} value={follower}>
-                  {follower}
+        <CardActions>
+          <div className="actions">
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <InputLabel id="select-label">Following</InputLabel>
+              <Select
+                labelId="select-label"
+                id="select"
+                value=""
+                onChange={handleFollowingChange}
+                label="Following"
+              >
+                <MenuItem value="" disabled>
+                  Following
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <div className="share-buttons">
-            <FacebookShareButton
-              url={window.location.href}
-              quote={`Check out ${username}'s Marvel Character!`}
-            >
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-            <WhatsappShareButton
-              url={window.location.href}
-              title={`Check out ${username}'s Marvel Character!`}
-            >
-              <WhatsappIcon size={32} round />
-            </WhatsappShareButton>
-            <EmailShareButton
-              url={window.location.href}
-              subject={`Check out ${username}'s Marvel Character!`}
-              body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}
-            >
-              <EmailIcon size={32} round />
-            </EmailShareButton>
+                {followingList.map((follower) => (
+                  <MenuItem key={follower} value={follower}>
+                    {follower}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <div className="share-buttons">
+              <FacebookShareButton
+                url={window.location.href}
+                quote={`Check out ${username}'s Marvel Character!`}
+              >
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <WhatsappShareButton
+                url={window.location.href}
+                title={`Check out ${username}'s Marvel Character!`}
+              >
+                <WhatsappIcon size={32} round />
+              </WhatsappShareButton>
+              <EmailShareButton
+                url={window.location.href}
+                subject={`Check out ${username}'s Marvel Character!`}
+                body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}
+              >
+                <EmailIcon size={32} round />
+              </EmailShareButton>
+            </div>
           </div>
-        </div>
+        </CardActions>
       </Card>
     </div>
   );
