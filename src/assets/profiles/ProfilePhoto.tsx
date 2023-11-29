@@ -26,7 +26,7 @@ export { default as DARKHAWKCHRISPOWEL } from "./darkhawk.jpg";
 // export { default as HERCULESGREEKGOD } from "./herculesgreekgod.jpg";
 // export { default as HUMANTORCHANDROID } from "./humantorchandroid.jpg";
 // export { default as IRONMANIVJAMESR } from "./ironmanivjamesr.jpg";
-// export { default as IRONMANTONYSTARK } from "./ironmantonystark.jpg";
+ export { default as IRONMANTONYSTARK } from "./ironmantonystark.png";
 // export { default as JACKOFHEARTSJACK } from "./jackofheartsjack.jpg";
 // export { default as JOCASTA } from "./jocasta.jpg";
 // export { default as JUSTICEIIVANCEAST } from "./justiceiivanceast.jpg";
