@@ -124,7 +124,7 @@ const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick, hovered }) => {
         return newData;
       },
     });
-  }, [hoveredNode, setSettings, sigma]);
+  }, [hoveredNode, setSettings, sigma, hovered]);
 
   return null;
 };
