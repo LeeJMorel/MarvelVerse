@@ -3,7 +3,7 @@ import "./App.scss";
 import Timeline from "./Timeline";
 import Network from "./Network";
 import A3Writeup from "./A3Writeup";
-import FinalWriteup from "./FinalWriteup";
+import FinalWriteup from "./VideoDemonstration";
 import Filters from "./Filters";
 import { FilterOption, defaultFilter, filterOptions } from "./types";
 import { Link } from "@mui/material";
@@ -141,7 +141,7 @@ function App() {
 
           {view === "Network" && (
             <button onClick={() => setView("FinalWriteup")}>
-              Final Writeup
+              Video Demonstration
             </button>
           )}
           <Link href="https://www.marvel.com/" underline="hover">
