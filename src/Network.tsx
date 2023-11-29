@@ -15,6 +15,7 @@ import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
 import HowToPost from "./HowToPost";
+import OnHoverTitle from "./OnHoverTitle";
 
 const dataUser: UserData[] = userData as UserData[];
 
@@ -36,6 +37,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
   const [socialPostData, setSocialPostData] = useState<SocialPostProps | null>(
     null
   );
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   const dataGraph: any = graphDataMap[filter.label];
   const graphData = dataGraph;
@@ -92,6 +94,10 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
     handleFollowingChange(label);
   };
 
+  const handleHoverNode = (label: string | null): void => {
+    setHoveredNode(label);
+  };
+
   return (
     <div className="app-body network-container">
       {!showSocialPost && <HowToPost filter={filter} />}
@@ -109,7 +115,12 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
       )}
 
       <div className="network-graph-container">
-        <SigmaGraphViewer data={graphData} onNodeClick={handleNodeClick} />
+        <OnHoverTitle label={hoveredNode} />
+        <SigmaGraphViewer
+          data={graphData}
+          onNodeClick={handleNodeClick}
+          hovered={handleHoverNode}
+        />
       </div>
     </div>
   );
