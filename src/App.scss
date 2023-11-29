@@ -87,6 +87,7 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
       padding-right: 20px;
       flex: 1;
       flex-direction: row;
+      overflow: hidden;
 
       .social-container {
         width: 30%;
