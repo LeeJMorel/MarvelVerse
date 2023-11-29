@@ -97,7 +97,7 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
         />
         <div className="image-container">
           <img
-            src={Images[modifiedTitle] || "default-image-url"}
+            src={Images[modifiedTitle] || Images.DEFAULT}
             alt={`Profile Picture for ${username}`}
           />
         </div>
