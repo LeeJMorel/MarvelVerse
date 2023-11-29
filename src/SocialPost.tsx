@@ -45,7 +45,7 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
   const [liked, setLiked] = useState(false);
   const [showLikedMessage, setShowLikedMessage] = useState(false);
   // eslint-disable-next-line no-useless-escape
-  const modifiedTitle = username.replace(/[.\[\]/-]/g, "");
+  const modifiedTitle = username.replace(/['.\[\]/-]/g, "");
 
   const handleLikeClick = () => {
     setLiked(!liked);
