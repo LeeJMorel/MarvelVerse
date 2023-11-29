@@ -93,7 +93,7 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
         </div>
         <CardHeader
           title={username}
-          subheader={`Comics: ${comicsCount} | Followers: ${followersCount} | Following: ${followingList.length}`}
+          subheader={`Comics: ${comicsCount} | Connections: ${followingList.length} | Encounters: ${followersCount}`}
         />
         <div className="image-container">
           <img
