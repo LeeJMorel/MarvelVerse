@@ -10,10 +10,9 @@ import XM from "../src/data/xmen.json";
 import FF from "../src/data/fantastic4.json";
 import MS from "../src/data/midnight_sons.json";
 import DEF from "../src/data/defenders.json";
-import graphData from "../src/data/data.json";
+import ShowAll from "../src/data/showAll.json";
 import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
-import { SigmaTeamViewer } from "./SigmaTeamViewer";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
 import HowToPost from "./HowToPost";
 
@@ -26,7 +25,7 @@ const graphDataMap = {
   "Fantastic Four": FF,
   "Midnight Sons": MS,
   Defenders: DEF,
-  "Show All": graphData,
+  "Show All": ShowAll,
 };
 interface NetworkProps {
   filter: FilterOption;
@@ -110,11 +109,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
       )}
 
       <div className="network-graph-container">
-        {filter.label === "Show All" ? (
-          <SigmaGraphViewer data={graphData} onNodeClick={handleNodeClick} />
-        ) : (
-          <SigmaTeamViewer data={graphData} onNodeClick={handleNodeClick} />
-        )}
+        <SigmaGraphViewer data={graphData} onNodeClick={handleNodeClick} />
       </div>
     </div>
   );

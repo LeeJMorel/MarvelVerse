@@ -38,12 +38,12 @@ const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick }) => {
     // Create the graph
     const graph = new MultiDirectedGraph();
 
-    data.nodes.forEach((node, index) => {
-      graph.addNode(String(index), { ...node });
+    data.nodes.forEach((node) => {
+      graph.addNode(node.id, { ...node });
     });
 
-    data.edges.forEach((edge, index) => {
-      graph.addEdgeWithKey(String(index), edge.source, edge.target, {
+    data.edges.forEach((edge) => {
+      graph.addEdgeWithKey(edge.id, edge.source, edge.target, {
         color: edge.color,
       });
     });
@@ -105,6 +105,7 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
 }) => {
   return (
     <SigmaContainer
+      graph={MultiDirectedGraph}
       style={{
         width: "100%",
         height: "100%",

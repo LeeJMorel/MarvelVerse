@@ -1,1 +1,110 @@
-{"nodes":[{"label":"GHOST-RIDER-II/JOHNN","x":176.77670288085938,"y":-176.77670288085938,"id":"2","attributes":{"Modularity Class":"0","size":"35","Degree":"3","Weighted Degree":"70.0"},"color":"rgb(146,0,223)","size":10.0},{"label":"MORBIUS/DR.-MICHAEL","x":-176.77670288085938,"y":176.77670288085938,"id":"0","attributes":{"Modularity Class":"0","size":"8","Degree":"3","Weighted Degree":"16.0"},"color":"rgb(146,0,223)","size":10.0},{"label":"BLADE","x":176.77670288085938,"y":176.77670288085938,"id":"3","attributes":{"Modularity Class":"0","size":"7","Degree":"3","Weighted Degree":"14.0"},"color":"rgb(146,0,223)","size":10.0},{"label":"GHOST-RIDER-III/DAN","x":-176.77670288085938,"y":-176.77670288085938,"id":"1","attributes":{"Modularity Class":"0","size":"34","Degree":"3","Weighted Degree":"68.0"},"color":"rgb(146,0,223)","size":10.0}],"edges":[{"source":"2","target":"3","id":"97952","attributes":{},"color":"rgb(146,0,223)","size":4.0},{"source":"0","target":"3","id":"97946","attributes":{},"color":"rgb(146,0,223)","size":6.0},{"source":"1","target":"2","id":"97948","attributes":{},"color":"rgb(146,0,223)","size":60.0},{"source":"0","target":"1","id":"97944","attributes":{},"color":"rgb(146,0,223)","size":4.0},{"source":"0","target":"2","id":"97945","attributes":{},"color":"rgb(146,0,223)","size":6.0},{"source":"1","target":"3","id":"97949","attributes":{},"color":"rgb(146,0,223)","size":4.0}]}
+{
+  "nodes": [
+    {
+      "label": "GHOST-RIDER-II/JOHNN",
+      "x": 176.77670288085938,
+      "y": -176.77670288085938,
+      "id": "2",
+      "attributes": {
+        "Modularity Class": "0",
+        "size": "35",
+        "Degree": "3",
+        "Weighted Degree": "70.0"
+      },
+      "color": "rgb(146,0,223)",
+      "size": 10.0
+    },
+    {
+      "label": "MORBIUS/DR.-MICHAEL",
+      "x": -176.77670288085938,
+      "y": 176.77670288085938,
+      "id": "0",
+      "attributes": {
+        "Modularity Class": "0",
+        "size": "8",
+        "Degree": "3",
+        "Weighted Degree": "16.0"
+      },
+      "color": "rgb(146,0,223)",
+      "size": 10.0
+    },
+    {
+      "label": "BLADE",
+      "x": 176.77670288085938,
+      "y": 176.77670288085938,
+      "id": "3",
+      "attributes": {
+        "Modularity Class": "0",
+        "size": "7",
+        "Degree": "3",
+        "Weighted Degree": "14.0"
+      },
+      "color": "rgb(146,0,223)",
+      "size": 10.0
+    },
+    {
+      "label": "GHOST-RIDER-III/DAN",
+      "x": -176.77670288085938,
+      "y": -176.77670288085938,
+      "id": "1",
+      "attributes": {
+        "Modularity Class": "0",
+        "size": "34",
+        "Degree": "3",
+        "Weighted Degree": "68.0"
+      },
+      "color": "rgb(146,0,223)",
+      "size": 10.0
+    }
+  ],
+  "edges": [
+    {
+      "source": "2",
+      "target": "3",
+      "id": "97952",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 4.0
+    },
+    {
+      "source": "0",
+      "target": "3",
+      "id": "97946",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 6.0
+    },
+    {
+      "source": "1",
+      "target": "2",
+      "id": "97948",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 60.0
+    },
+    {
+      "source": "0",
+      "target": "1",
+      "id": "97944",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 4.0
+    },
+    {
+      "source": "0",
+      "target": "2",
+      "id": "97945",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 6.0
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": "97949",
+      "attributes": {},
+      "color": "rgb(146,0,223)",
+      "size": 4.0
+    }
+  ]
+}
