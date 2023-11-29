@@ -129,8 +129,8 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
           }
 
           .image-container {
-            width: 350px;
-            height: 350px;
+            //width: 350px;
+            //height: 350px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -138,7 +138,7 @@ $marvel-red-button: darken($marvel-red-primary, 10%);
             img {
               max-width: 100%;
               max-height: 100%;
-              object-fit: cover;
+              object-fit: contain;
             }
           }
 

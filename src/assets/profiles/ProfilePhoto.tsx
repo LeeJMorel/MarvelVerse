@@ -61,7 +61,7 @@ export { default as DARKHAWKCHRISPOWEL } from "./darkhawk.jpg";
 // export { default as TWOGUNKID } from "./twogunkid.jpg";
 // export { default as USAGENTCAPTAINJOHN } from "./usagentcaptainjohn.jpg";
 // export { default as VANCEASTRO } from "./vanceastro.jpg";
-// export { default as VISION } from "./vision.jpg";
+ export { default as VISION } from "./vision.png";
 // export { default as WASPJANETVANDYNE } from "./waspjanetvandyne.jpg";
 // export { default as WHIZZERROBERTLFR } from "./whizzerrobertlfr.jpg";
 // export { default as WONDERMANSIMONWIL } from "./wondermansimonwil.jpg";
