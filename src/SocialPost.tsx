@@ -23,6 +23,11 @@ import {
   EmailShareButton,
   FacebookIcon,
   FacebookShareButton,
+  FacebookShareCount,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
@@ -66,6 +71,9 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
     onClose();
   };
 
+  const shareUrl = window.location.href;
+  const quote = `Check out ${username}'s Marvel Character!`;
+
   return (
     <div className="social-container">
       <Card className="MuiCard-root">
@@ -108,17 +116,20 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
         </CardContent>
         <CardActions>
           <div className="actions">
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-              <InputLabel id="select-label">Following</InputLabel>
+            <FormControl
+              sx={{ m: 1, minWidth: 130, width: "100%" }}
+              size="small"
+            >
+              <InputLabel id="select-label">Connections</InputLabel>
               <Select
                 labelId="select-label"
                 id="select"
                 value=""
                 onChange={handleFollowingChange}
-                label="Following"
+                label="Connections"
               >
                 <MenuItem value="" disabled>
-                  Following
+                  Connections
                 </MenuItem>
                 {followingList.map((follower) => (
                   <MenuItem key={follower} value={follower}>
@@ -127,29 +138,30 @@ const SocialPost: React.FC<SocialPostPropsWithCallback> = ({
                 ))}
               </Select>
             </FormControl>
-            <div className="share-buttons">
-              <FacebookShareButton
-                url={window.location.href}
-                quote={`Check out ${username}'s Marvel Character!`}
-              >
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-              <WhatsappShareButton
-                url={window.location.href}
-                title={`Check out ${username}'s Marvel Character!`}
-              >
-                <WhatsappIcon size={32} round />
-              </WhatsappShareButton>
-              <EmailShareButton
-                url={window.location.href}
-                subject={`Check out ${username}'s Marvel Character!`}
-                body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}
-              >
-                <EmailIcon size={32} round />
-              </EmailShareButton>
-            </div>
           </div>
         </CardActions>
+        <div className="share-buttons">
+          <FacebookShareButton url={shareUrl} quote={quote}>
+            <FacebookIcon size={32} round />
+            <FacebookShareCount url={shareUrl} className="share-count" />
+          </FacebookShareButton>
+          <TwitterShareButton url={shareUrl} title={quote}>
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
+          <TelegramShareButton url={shareUrl} title={quote}>
+            <TelegramIcon size={32} round />
+          </TelegramShareButton>
+          <WhatsappShareButton url={shareUrl} title={quote}>
+            <WhatsappIcon size={32} round />
+          </WhatsappShareButton>
+          <EmailShareButton
+            url={shareUrl}
+            subject={quote}
+            body={`I thought you might be interested in this Marvel Character: ${window.location.href}`}
+          >
+            <EmailIcon size={32} round />
+          </EmailShareButton>
+        </div>
       </Card>
     </div>
   );
