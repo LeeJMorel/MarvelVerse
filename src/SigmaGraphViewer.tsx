@@ -27,6 +27,29 @@ interface SigmaGraphViewerProps {
   onNodeClick: (label: string) => void;
 }
 
+function customDrawLabel(context, data, settings) {
+  const fontSize = settings.labelSize || 12;
+  context.font = `${fontSize}px Lato, sans-serif`;
+
+  if (data.highlighted === false) {
+    context.fillStyle = "rgba(0, 0, 0, 0.75)";
+    const padding = 4;
+    const textWidth = context.measureText(data.label).width;
+    const backgroundWidth = textWidth + padding * 2;
+    const backgroundHeight = fontSize + padding * 2;
+    context.fillRect(
+      data.x - backgroundWidth / 2,
+      data.y - fontSize / 2 - padding,
+      backgroundWidth,
+      backgroundHeight
+    );
+
+    // Label text
+    context.fillStyle = "white"; // White text color
+    context.fillText(data.label, data.x - textWidth / 2, data.y + fontSize / 2);
+  }
+}
+
 const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick }) => {
   const loadGraph = useLoadGraph();
   const sigma = useSigma();
@@ -64,6 +87,7 @@ const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick }) => {
 
   useEffect(() => {
     setSettings({
+      labelRenderer: customDrawLabel,
       nodeReducer: (node, data) => {
         const graph = sigma.getGraph();
         const newData: Attributes = {
