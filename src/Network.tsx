@@ -10,7 +10,7 @@ import XM from "../src/data/xmen.json";
 import FF from "../src/data/fantastic4.json";
 import MS from "../src/data/midnight_sons.json";
 import DEF from "../src/data/defenders.json";
-import ShowAll from "../src/data/showAll.json";
+import ShowAll from "../src/data/data.json";
 import userData from "../src/data/marvel_map.json";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { SigmaGraphViewer } from "./SigmaGraphViewer";
