@@ -7,7 +7,7 @@ export { default as BINARYCAROLDANVERS } from "./binary.jpg";
 export { default as BLACKKNIGHTVDANE } from "./blackknight.jpg";
 export { default as BLACKPANTHERTCHAL } from "./blackpanther.jpg";
 export { default as BLACKWIDOWNATASHA } from "./blackwidow.jpg";
-export { default as CAPTAINAMERICA } from "./captainamerica.jpg";
+export { default as CAPTAINAMERICA } from "./captainamerica.png";
 export { default as CAPTAINMARVELIIMO } from "./captainmarvelmo.jpg";
 export { default as CAPTAINMARVELCAPTA } from "./captainmarvelcapta.jpg";
 export { default as CHARLIE27 } from "./charlie27.jpg";
