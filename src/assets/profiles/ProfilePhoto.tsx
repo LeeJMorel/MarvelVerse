@@ -22,7 +22,7 @@ export { default as DARKHAWKCHRISPOWEL } from "./darkhawk.jpg";
 // export { default as FLATMAN } from "./flatman.jpg";
 // export { default as FORGOTTENONEGILGAM } from "./forgottenonegilgam.jpg";
 // export { default as HAWKEYECLINTBARTON } from "./hawkeyeclintbarton.jpg";
- export { default as HELLCATPATSYWALKER } from "./hellcatpatsywalker.jpg";
+ export { default as HELLCATPATSYWALKER } from "./hellcatpatsywalker.png";
 // export { default as HERCULESGREEKGOD } from "./herculesgreekgod.jpg";
 // export { default as HUMANTORCHANDROID } from "./humantorchandroid.jpg";
 // export { default as IRONMANIVJAMESR } from "./ironmanivjamesr.jpg";
