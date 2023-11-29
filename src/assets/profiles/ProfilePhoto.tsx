@@ -16,7 +16,7 @@ export { default as DARKHAWKCHRISPOWEL } from "./darkhawk.jpg";
 // export { default as DINAHSOAR } from "./dinahsoar.jpg";
 // export { default as DOORMAN } from "./doorman.jpg";
 // export { default as DRDRUIDANTHONYLU } from "./drdruidanthonylu.jpg";
-// export { default as FALCONSAMWILSON } from "./falconsamwilson.jpg";
+ export { default as FALCONSAMWILSON } from "./falconsamwilson.png";
 // export { default as FIREBIRDBONITAJUAR } from "./firebirdbonitajuar.jpg";
 // export { default as FIRESTARANGELICAJO } from "./firestarangelicajo.jpg";
 // export { default as FLATMAN } from "./flatman.jpg";
