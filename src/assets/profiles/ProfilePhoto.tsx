@@ -152,7 +152,7 @@ export { default as CYCLOPSSCOTTSUMMER } from "./cyclopsscottsummer.png";
 // export { default as FERALMARIACALLASAN } from "./feralmariacallasan.jpg";
 // export { default as FERON } from "./feron.jpg";
 // export { default as FORGE } from "./forge.jpg";
-// export { default as GAMBITREMYLEBEAU } from "./gambitremy.jpg";
+export { default as GAMBITREMYLEBEAU } from "./gambitremy.png";
 // export { default as GUARDIANJAMESMACDO } from "./guardianjamesmacdo.jpg";
 // export { default as HAVOKALEXSUMMERS } from "./havokalexsummers.jpg";
 // export { default as HEATHERHUDSON } from "./heatherhudson.jpg";
