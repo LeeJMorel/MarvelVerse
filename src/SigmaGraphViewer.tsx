@@ -21,6 +21,7 @@ import { MultiDirectedGraph } from "graphology";
 import "./App.scss";
 import { Attributes } from "graphology-types";
 import { GraphData } from "./types";
+import GraphEvents from "./DragNdrop";
 
 interface SigmaGraphViewerProps {
   data: GraphData;
@@ -45,8 +46,7 @@ function customDrawLabel(context, data, settings) {
       backgroundHeight
     );
 
-    // Label text
-    context.fillStyle = "white"; // White text color
+    context.fillStyle = "white";
     context.fillText(data.label, data.x - textWidth / 2, data.y + fontSize / 2);
   }
 }
@@ -165,6 +165,7 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
         <ControlsContainer position={"top-right"}>
           <SearchControl style={{ width: "200px" }} />
         </ControlsContainer>
+        <GraphEvents></GraphEvents>
         <MyGraph data={data} onNodeClick={onNodeClick} hovered={hovered} />
       </SigmaContainer>
     </>
