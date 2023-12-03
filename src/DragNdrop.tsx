@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { useRegisterEvents, useSigma } from "@react-sigma/core";
 
-const GraphEvents: React.FC = () => {
+const DragNdrop: React.FC<{
+  setIsDragging: (isDragging: boolean) => void;
+}> = ({ setIsDragging }) => {
   const registerEvents = useRegisterEvents();
   const sigma = useSigma();
   const [draggedNode, setDraggedNode] = useState<string | null>(null);
@@ -14,15 +16,18 @@ const GraphEvents: React.FC = () => {
       downNode: (e) => {
         setDraggedNode(e.node);
         sigma.getGraph().setNodeAttribute(e.node, "highlighted", true);
+        setIsDragging(true);
       },
       mouseup: () => {
         if (draggedNode) {
-          setDraggedNode(null);
           sigma.getGraph().removeNodeAttribute(draggedNode, "highlighted");
+          setDraggedNode(null);
+          setIsDragging(false);
         }
       },
       mousedown: () => {
         // Disable the autoscale at the first down interaction
+        setIsDragging(false);
         if (!sigma.getCustomBBox()) sigma.setCustomBBox(sigma.getBBox());
       },
       mousemove: (e) => {
@@ -31,7 +36,6 @@ const GraphEvents: React.FC = () => {
           const pos = sigma.viewportToGraph(e);
           sigma.getGraph().setNodeAttribute(draggedNode, "x", pos.x);
           sigma.getGraph().setNodeAttribute(draggedNode, "y", pos.y);
-
           // Prevent sigma to move camera:
           e.preventSigmaDefault();
           e.original.preventDefault();
@@ -40,8 +44,8 @@ const GraphEvents: React.FC = () => {
       },
       touchup: () => {
         if (draggedNode) {
-          setDraggedNode(null);
           sigma.getGraph().removeNodeAttribute(draggedNode, "highlighted");
+          setDraggedNode(null);
         }
       },
       touchdown: () => {
@@ -65,9 +69,9 @@ const GraphEvents: React.FC = () => {
         }
       },
     });
-  }, [registerEvents, sigma, draggedNode]);
+  }, [registerEvents, sigma, draggedNode, setIsDragging]);
 
   return null;
 };
 
-export default GraphEvents;
+export default DragNdrop;

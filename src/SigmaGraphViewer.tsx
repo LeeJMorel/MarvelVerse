@@ -21,7 +21,7 @@ import { MultiDirectedGraph } from "graphology";
 import "./App.scss";
 import { Attributes } from "graphology-types";
 import { GraphData } from "./types";
-import GraphEvents from "./DragNdrop";
+import DragNdrop from "./DragNdrop";
 
 interface SigmaGraphViewerProps {
   data: GraphData;
@@ -51,13 +51,17 @@ function customDrawLabel(context, data, settings) {
   }
 }
 
-const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick, hovered }) => {
+const MyGraph: FC<
+  SigmaGraphViewerProps & {
+    isDragging: boolean;
+    setIsDragging: (isDragging: boolean) => void;
+  }
+> = ({ data, onNodeClick, hovered, isDragging }) => {
   const loadGraph = useLoadGraph();
   const sigma = useSigma();
   const registerEvents = useRegisterEvents();
   const setSettings = useSetSettings();
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-
   useEffect(() => {
     // Create the graph
     const graph = new MultiDirectedGraph();
@@ -76,19 +80,25 @@ const MyGraph: FC<SigmaGraphViewerProps> = ({ data, onNodeClick, hovered }) => {
 
     registerEvents({
       enterNode: (event) => {
-        setHoveredNode(event.node);
+        if (!isDragging) {
+          setHoveredNode(event.node);
+        }
       },
       leaveNode: () => {
-        setHoveredNode(null);
+        if (!isDragging) {
+          setHoveredNode(null);
+        }
       },
       clickNode: (event) => {
-        const clickedNode = sigma
-          .getGraph()
-          .getNodeAttributes(event.node).label;
-        onNodeClick(clickedNode);
+        if (!isDragging) {
+          const clickedNode = sigma
+            .getGraph()
+            .getNodeAttributes(event.node).label;
+          onNodeClick(clickedNode);
+        }
       },
     });
-  }, [data, loadGraph, registerEvents, onNodeClick, sigma]);
+  }, [data, loadGraph, registerEvents, onNodeClick, sigma, isDragging]);
 
   useEffect(() => {
     const graph = sigma.getGraph();
@@ -134,6 +144,7 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
   onNodeClick,
   hovered,
 }) => {
+  const [isDragging, setIsDragging] = useState(false);
   return (
     <>
       <SigmaContainer
@@ -165,8 +176,14 @@ export const SigmaGraphViewer: FC<SigmaGraphViewerProps> = ({
         <ControlsContainer position={"top-right"}>
           <SearchControl style={{ width: "200px" }} />
         </ControlsContainer>
-        <GraphEvents></GraphEvents>
-        <MyGraph data={data} onNodeClick={onNodeClick} hovered={hovered} />
+        <MyGraph
+          data={data}
+          onNodeClick={onNodeClick}
+          hovered={hovered}
+          isDragging={isDragging}
+          setIsDragging={setIsDragging}
+        />
+        <DragNdrop setIsDragging={setIsDragging} />
       </SigmaContainer>
     </>
   );

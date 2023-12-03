@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./App.scss";
 import { FilterOption, profileBodyMap } from "./types";
 import SocialPost from "./SocialPost";
@@ -39,8 +39,7 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
   );
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
-  const dataGraph: any = graphDataMap[filter.label];
-  const graphData = dataGraph;
+  const graphData = useMemo(() => graphDataMap[filter.label], [filter.label]);
 
   const handleFollowingChange = (selectedUser: string): void => {
     // Find the selected user in the Marvel map
@@ -91,11 +90,22 @@ const Network: React.FC<NetworkProps> = ({ filter }) => {
   };
 
   const handleNodeClick = (label: string): void => {
-    handleFollowingChange(label);
+    if (
+      label !== null &&
+      (!socialPostData || socialPostData.username !== label)
+    ) {
+      console.log("username: " + socialPostData?.username);
+      console.log("label: " + label);
+      handleFollowingChange(label);
+    }
   };
 
   const handleHoverNode = (label: string | null): void => {
-    setHoveredNode(label);
+    if (label !== null && hoveredNode !== label) {
+      console.log("hovered node: " + hoveredNode);
+      console.log("label: " + label);
+      setHoveredNode(label);
+    }
   };
 
   return (
