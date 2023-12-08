@@ -7,7 +7,7 @@ const VideoDemonstration: React.FC = () => {
     "Watch this helpful demonstration to learn how to navigate the features of the MarvelVerse and learn more about the rich Social networks.";
 
   // Replace 'YOUR_YOUTUBE_VIDEO_ID' with the actual ID of your YouTube video
-  const youtubeVideoId = "YOUR_YOUTUBE_VIDEO_ID";
+  const youtubeVideoId = "tGDPI4geKj8";
 
   // YouTube embed URL format: https://www.youtube.com/embed/VIDEO_ID
   const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeVideoId}`;

@@ -221,5 +221,6 @@ export { default as SUNFIRESHIROYOSHID } from "./sunfireshiroyoshid.png";
 // export { default as WILDCHILDKYLEGIBN } from "./wildchildkylegibn.jpg";
 // export { default as WITCHFIRE } from "./witchfire.jpg";
 // export { default as WOLFSBANERAHNESINC } from "./wolfsbanerahnesinc.jpg";
+export { default as WOLVERINELOGAN } from "./wolverinelogan.png"
 // export { default as XMANATHANGREY } from "./xmanathangrey.jpg";
 // export { default as YUKIO } from "./yukio.jpg";
