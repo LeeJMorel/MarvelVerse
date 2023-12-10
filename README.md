@@ -18,7 +18,7 @@ MarvelVerse has two possible views, one to explore the comic publications over t
 3. **Filter**: Use the filtering options provided to refine the data shown in the visualizations.
 4. **Interact**: The visualizations have a number of ways to zoom and examine each data point to let you explore the Marvel Universe in depth. We provide a video tutorial below for the network visualization interactions to demonstrate how to get started.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tGDPI4geKj8" frameborder="0" allowfullscreen></iframe>
+[![MarvelVerse Network Visualization Tutorial](https://img.youtube.com/vi/tGDPI4geKj8/0.jpg)](https://www.youtube.com/watch?v=tGDPI4geKj8)
 
 ## Built With
 
