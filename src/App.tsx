@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import Timeline from "./Timeline";
 import Network from "./Network";
-import A3Writeup from "./A3Writeup";
-import FinalWriteup from "./VideoDemonstration";
 import Filters from "./Filters";
 import { FilterOption, defaultFilter, filterOptions } from "./types";
 import { Link } from "@mui/material";
@@ -62,15 +60,6 @@ function App() {
       <aside className={`mobile-menu ${isMobile ? "isVisible" : ""}`}>
         <div className="mobile-menu-content" ref={menuContentRef}>
           <div className="references">
-            {view === "Timeline" && (
-              <button onClick={() => setView("A3Writeup")}>A3 Writeup</button>
-            )}
-
-            {view === "Network" && (
-              <button onClick={() => setView("FinalWriteup")}>
-                Final Writeup
-              </button>
-            )}
             <Link href="https://www.marvel.com/" underline="hover">
               Data provided by Marvel. ©2023 Marvel
             </Link>
@@ -107,10 +96,6 @@ function App() {
           {window.innerWidth > 768 || window.innerHeight < window.innerWidth ? (
             view === "Network" ? (
               <Network filter={currentFilter} />
-            ) : view === "A3Writeup" ? (
-              <A3Writeup />
-            ) : view === "FinalWriteup" ? (
-              <FinalWriteup />
             ) : (
               <Timeline filter={currentFilter} />
             )
@@ -135,15 +120,6 @@ function App() {
           />
         </div>
         <div className="references">
-          {view === "Timeline" && (
-            <button onClick={() => setView("A3Writeup")}>A3 Writeup</button>
-          )}
-
-          {view === "Network" && (
-            <button onClick={() => setView("FinalWriteup")}>
-              Video Demonstration
-            </button>
-          )}
           <Link href="https://www.marvel.com/" underline="hover">
             Data provided by Marvel. ©2023 Marvel
           </Link>

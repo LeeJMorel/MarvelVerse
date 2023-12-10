@@ -22,7 +22,7 @@ MarvelVerse has two possible views, one to explore the comic publications over t
 
 ## Built With
 
-- **Vite: React-TS**: A blazingly fast and modern frontend tooling.
+- **[Vite: React-TS](https://vitejs.dev/guide/)**: A blazingly fast and modern frontend tooling.
 - **[Marvel API](https://developer.marvel.com/)**: The source of our rich Marvel universe data.
 - **[Kaggle](https://www.kaggle.com/datasets/deepcontractor/marvel-comic-books)**: Author Deep Contractor aggregated some of the Marvel API data into .csv files for ease of use.
 - **[React SVG TimeLine](https://github.com/netzwerg/react-svg-timeline)**: The magic behind our interactive and dynamic timeline visualizations.
