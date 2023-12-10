@@ -6,16 +6,19 @@ Welcome to MarvelVerse! Dive deep into the Marvel Universe with our visually stu
 
 ## Features
 
-1. **Interactive Neural Network of Characters:** (Coming in the Final) Explore the intricate social connections between all your favorite Marvel characters with our dynamic and interactive neural network.
-2. **Timeline of Comic Series:** (A3) Travel back in time and track when each comic series was published with our easy-to-read interactive line graph.
+MarvelVerse has two possible views, one to explore the comic publications over time and the other to examine the social connections of characters. To better examine the hero teams that define so many comics we also include an array of filters for you to narrow down and view the social networks and timelines of the various Marvel teams.
 
-In addition, MarvelVerse provides an array of filters for you to narrow down and view the social networks and timelines of the various Marvel teams.
+1. **Timeline of Comic Series:** Travel back in time and track when each comic series was published with our easy-to-read interactive line graph.
+2. **Interactive Neural Network of Characters:** Explore the intricate social connections between all your favorite Marvel characters with our dynamic and interactive neural network. 
 
 ## Getting Started
 
 1. **Visit [MarvelVerse](https://cse442.pages.cs.washington.edu/23au/final-project/MarvelVerse/)**: Click on the link to be directed to the main website.
 2. **Navigate**: Use the top navigation bar to switch between different visualizations. If you are on a mobile device this is located in the top of the left hand navigation bar.
 3. **Filter**: Use the filtering options provided to refine the data shown in the visualizations.
+4. **Interact**: The visualizations have a number of ways to zoom and examine each data point to let you explore the Marvel Universe in depth. We provide a video tutorial below for the network visualization interactions to demonstrate how to get started.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tGDPI4geKj8" frameborder="0" allowfullscreen></iframe>
 
 ## Built With
 
